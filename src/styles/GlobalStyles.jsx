@@ -16,7 +16,7 @@ ${reset};
       --light-grey: #f2f2f2;
     }
     body {
-        font-family: 'Noto Sans KR', 'Gmarket Sans', sans-serif;
+      font-family: 'Noto Sans KR', 'Gmarket Sans', sans-serif;
       font-weight: 400;
       -ms-overflow-style: none;
       background-color: var(--white);

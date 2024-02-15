@@ -1,6 +1,7 @@
 import React from 'react';
-import { GlobalStyle } from 'styles/GlobalStyles';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { GlobalStyle } from 'styles/GlobalStyles';
+import 'styles/font.css';
 import Root from 'pages/Root';
 import Splash from 'pages/Splash/Splash';
 import Login from 'pages/Login/Login';
