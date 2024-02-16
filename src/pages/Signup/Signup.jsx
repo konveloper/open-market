@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import imgLogo from 'assets/img/logo.svg';
 import Input from 'components/Common/Input/Input';
 import Button from 'components/Common/Button/Button';
@@ -11,6 +11,19 @@ import {
 } from './SignupStyle';
 
 function Signup() {
+  const [signupForm, setSignupForm] = useState({
+    username: '',
+    password: '',
+    password2: '',
+    phone_number: '',
+    name: '',
+  });
+
+  const inputChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setSignupForm({ ...signupForm, [name]: value });
+  };
+
   return (
     <SignupSection>
       <H2IR>회원가입 페이지</H2IR>
@@ -23,6 +36,7 @@ function Signup() {
             name='username'
             placeholder='영문, 숫자만 사용 가능합니다.'
             max='20'
+            onChange={inputChangeHandler}
           />
           <Button onsize='s'>중복 확인</Button>
         </ContUsername>
@@ -34,6 +48,7 @@ function Signup() {
             placeholder='8자리 이상의 비밀번호를 설정해주세요.'
             min='8'
             max='20'
+            onChange={inputChangeHandler}
           />
         </div>
         <div>
@@ -44,6 +59,7 @@ function Signup() {
             placeholder='동일한 비밀번호를 입력해주세요.'
             min='8'
             max='20'
+            onChange={inputChangeHandler}
           />
         </div>
         <div>
@@ -53,6 +69,7 @@ function Signup() {
             name='name'
             placeholder='이름을 입력해주세요.'
             min='2'
+            onChange={inputChangeHandler}
           />
         </div>
         <div>
@@ -62,6 +79,7 @@ function Signup() {
             name='phone_number'
             placeholder='휴대폰번호를 입력해주세요.'
             min='11'
+            onChange={inputChangeHandler}
           />
         </div>
         <Button size='m'>{'오픈 마켓 시작하기'}</Button>
