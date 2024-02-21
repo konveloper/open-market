@@ -19,6 +19,8 @@ function Login() {
   });
   const [usernameErr, setUsernameErr] = useState('');
   const [usernameIsValid, setUsernameIsValid] = useState(false);
+  const [pwErr, setPwErr] = useState('');
+  const [pwIsValid, setPwIsValid] = useState(false);
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -38,6 +40,27 @@ function Login() {
     }
   };
 
+  const passwordHandler = () => {
+    if (!loginForm.password) {
+      setPwErr('비밀번호는 필수 항목입니다.');
+      setPwIsValid(false);
+    } else if (loginForm.password.length < 8) {
+      setPwErr('비밀번호는 8자 이상이어야 합니다.');
+      setPwIsValid(false);
+    } else {
+      setPwErr('');
+      setPwIsValid(true);
+    }
+  };
+
+  useEffect(() => {
+    setUsernameErr();
+  }, [loginForm.username]);
+
+  useEffect(() => {
+    setPwErr();
+  }, [loginForm.password]);
+
   return (
     <ContSection>
       <H2IR>로그인 페이지</H2IR>
@@ -49,6 +72,7 @@ function Login() {
             type='text'
             name='username'
             max='20'
+            defaultValue={loginForm.username}
             onChange={inputChangeHandler}
             onBlur={usernameHandler}
             message={usernameErr}
@@ -61,7 +85,10 @@ function Login() {
             name='password'
             min='8'
             max='20'
+            defaultValue={loginForm.password}
             onChange={inputChangeHandler}
+            onBlur={passwordHandler}
+            message={pwErr}
           />
         </div>
         <Button size='m'>로그인</Button>
