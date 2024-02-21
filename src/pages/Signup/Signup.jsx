@@ -171,9 +171,17 @@ function Signup() {
   const signupHandler = async (userData) => {
     try {
       const res = await postSignup(userData);
+      console.log(res);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
+        if (
+          err.response.data.phone_number[0] ===
+          '해당 사용자 전화번호는 이미 존재합니다.'
+        ) {
+          setPhoneNumberErr('해당 사용자 전화번호는 이미 존재합니다.');
+          setPhoneNumberIsValid(false);
+        }
         console.log(err.response.status);
         console.log(err.response.headers);
       } else {
@@ -270,7 +278,7 @@ function Signup() {
             label='휴대폰번호'
             type='text'
             name='phone_number'
-            placeholder='휴대폰번호를 입력해주세요.'
+            placeholder='휴대폰 번호를 입력해주세요.'
             min='11'
             defaultValue={signupForm.phone_number}
             onChange={inputChangeHandler}
@@ -278,7 +286,27 @@ function Signup() {
             message={phoneNumberErr}
           />
         </div>
-        <Button size='m'>{'오픈 마켓 시작하기'}</Button>
+        <Button
+          variant={
+            signupForm.username &&
+            signupForm.password &&
+            signupForm.password2 &&
+            signupForm.name &&
+            signupForm.name
+              ? 'abled'
+              : 'disabled'
+          }
+          disabled={
+            !signupForm.username ||
+            !signupForm.password ||
+            !signupForm.password2 ||
+            !signupForm.name ||
+            !signupForm.name
+          }
+          size='m'
+        >
+          {'오픈 마켓 시작하기'}
+        </Button>
       </ContInputForm>
     </SignupSection>
   );
