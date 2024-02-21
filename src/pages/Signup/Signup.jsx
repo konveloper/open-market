@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import postUsernameIsValid from 'api/Signup/postUsernameIsValid';
+import postSignup from 'api/Signup/postSignup';
 import imgLogo from 'assets/img/logo.svg';
 import Input from 'components/Common/Input/Input';
 import Button from 'components/Common/Button/Button';
@@ -10,7 +12,6 @@ import {
   ContInputForm,
   ContUsername,
 } from './SignupStyle';
-import postSignup from 'api/Signup/postSignup';
 
 function Signup() {
   const [signupForm, setSignupForm] = useState({
@@ -30,6 +31,8 @@ function Signup() {
   const [nameIsValid, setNameisValid] = useState(false);
   const [phoneNumberErr, setPhoneNumberErr] = useState('');
   const [phoneNumberIsValid, setPhoneNumberIsValid] = useState(false);
+
+  const navigate = useNavigate();
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -70,7 +73,6 @@ function Signup() {
         setUsernameErr('아이디는 20자 이하여야 합니다.');
         setUsernameIsValid(false);
       } else if (res.Success === '멋진 아이디네요 :)') {
-        console.log(res);
         setUsernameErr(`${res.Success}`);
         setUsernameIsValid(true);
       }
@@ -146,10 +148,6 @@ function Signup() {
     }
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-  };
-
   useEffect(() => {
     setUsernameErr();
   }, [signupForm.username]);
@@ -169,6 +167,42 @@ function Signup() {
   useEffect(() => {
     setPhoneNumberErr();
   }, [signupForm.phone_number]);
+
+  const signupHandler = async (userData) => {
+    try {
+      const res = await postSignup(userData);
+    } catch (err) {
+      if (err.response) {
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
+      }
+    }
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const userData = {
+      username: signupForm.username,
+      password: signupForm.password,
+      password2: signupForm.password2,
+      phone_number: signupForm.phone_number,
+      name: signupForm.name,
+    };
+    if (
+      usernameIsValid &&
+      pwIsValid &&
+      pwCheckIsValid &&
+      nameIsValid &&
+      phoneNumberIsValid
+    ) {
+      signupHandler(userData);
+      alert('환영합니다!');
+      navigate('/login');
+    }
+  };
 
   return (
     <SignupSection>
