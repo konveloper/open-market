@@ -26,6 +26,8 @@ function Signup() {
   const [pwIsValid, setPwIsValid] = useState(false);
   const [pwCheckErr, setPwCheckErr] = useState('');
   const [pwCheckIsValid, setPwCheckIsValid] = useState(false);
+  const [nameErr, setNameErr] = useState('');
+  const [nameIsValid, setNameisValid] = useState(false);
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -110,6 +112,19 @@ function Signup() {
     }
   };
 
+  const nameHandler = () => {
+    if (!signupForm.name) {
+      setNameErr('이름은 필수 항목입니다.');
+      setNameisValid(false);
+    } else if (signupForm.name.length < 2) {
+      setNameErr('이름은 2글자 이상이어야 합니다.');
+      setNameisValid(false);
+    } else {
+      setNameErr('');
+      setNameisValid(true);
+    }
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
   };
@@ -173,7 +188,10 @@ function Signup() {
             name='name'
             placeholder='이름을 입력해주세요.'
             min='2'
+            defaultValue={signupForm.name}
             onChange={inputChangeHandler}
+            onBlur={nameHandler}
+            message={nameErr}
           />
         </div>
         <div>
