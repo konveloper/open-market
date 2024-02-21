@@ -28,6 +28,8 @@ function Signup() {
   const [pwCheckIsValid, setPwCheckIsValid] = useState(false);
   const [nameErr, setNameErr] = useState('');
   const [nameIsValid, setNameisValid] = useState(false);
+  const [phoneNumberErr, setPhoneNumberErr] = useState('');
+  const [phoneNumberIsValid, setPhoneNumberIsValid] = useState(false);
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -125,6 +127,25 @@ function Signup() {
     }
   };
 
+  const phoneNumberHandler = () => {
+    const regExp = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+    if (!signupForm.phone_number) {
+      setPhoneNumberErr('휴대폰번호는 필수 항목입니다.');
+      setPhoneNumberIsValid(false);
+    } else if (signupForm.phone_number.length > 11) {
+      setPhoneNumberErr('휴대폰번호는 11자리 이하여야 합니다.');
+      setPhoneNumberIsValid(false);
+    } else if (!regExp.test(signupForm.phone_number)) {
+      setPhoneNumberErr(
+        '핸드폰 번호는 01*으로 시작하는 10~11자리 숫자여야 합니다.'
+      );
+      setPhoneNumberIsValid(false);
+    } else {
+      setPhoneNumberErr('');
+      setPhoneNumberIsValid(true);
+    }
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
   };
@@ -132,6 +153,22 @@ function Signup() {
   useEffect(() => {
     setUsernameErr();
   }, [signupForm.username]);
+
+  useEffect(() => {
+    setPwErr();
+  }, [signupForm.password]);
+
+  useEffect(() => {
+    setPwCheckErr();
+  }, [signupForm.password2]);
+
+  useEffect(() => {
+    setNameErr();
+  }, [signupForm.name]);
+
+  useEffect(() => {
+    setPhoneNumberErr();
+  }, [signupForm.phone_number]);
 
   return (
     <SignupSection>
@@ -201,7 +238,10 @@ function Signup() {
             name='phone_number'
             placeholder='휴대폰번호를 입력해주세요.'
             min='11'
+            defaultValue={signupForm.phone_number}
             onChange={inputChangeHandler}
+            onBlur={phoneNumberHandler}
+            message={phoneNumberErr}
           />
         </div>
         <Button size='m'>{'오픈 마켓 시작하기'}</Button>
