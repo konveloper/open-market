@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import postLogin from 'api/Login/postLogin';
 import imgLogo from 'assets/img/logo.svg';
 import Button from 'components/Common/Button/Button';
 import Input from 'components/Common/Input/Input';
@@ -21,6 +22,8 @@ function Login() {
   const [usernameIsValid, setUsernameIsValid] = useState(false);
   const [pwErr, setPwErr] = useState('');
   const [pwIsValid, setPwIsValid] = useState(false);
+
+  const navigate = useNavigate();
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -61,11 +64,39 @@ function Login() {
     setPwErr();
   }, [loginForm.password]);
 
+  const loginHandler = async (userData) => {
+    try {
+      await postLogin(userData);
+    } catch (err) {
+      if (err.response) {
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
+      }
+    }
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const userData = {
+      username: loginForm.username,
+      password: loginForm.password,
+      login_type: 'BUYER',
+    };
+    if (usernameIsValid && pwIsValid) {
+      loginHandler(userData);
+      alert('환영합니다!');
+      navigate('/home');
+    }
+  };
+
   return (
     <ContSection>
       <H2IR>로그인 페이지</H2IR>
       <ImgLogo src={imgLogo} alt='로고 이미지' />
-      <ContInputForm>
+      <ContInputForm onSubmit={submitHandler}>
         <ContUsername>
           <Input
             label='아이디'
@@ -91,7 +122,16 @@ function Login() {
             message={pwErr}
           />
         </div>
-        <Button size='m'>로그인</Button>
+        <Button
+          variant={
+            loginForm.username && loginForm.password ? 'abled' : 'disabled'
+          }
+          disabled={!loginForm.username || !loginForm.password}
+          size='m'
+          type='button'
+        >
+          로그인
+        </Button>
       </ContInputForm>
       <Link
         to='/login/signup'
