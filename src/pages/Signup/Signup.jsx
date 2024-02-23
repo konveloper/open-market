@@ -181,7 +181,6 @@ function Signup() {
           '해당 사용자 전화번호는 이미 존재합니다.'
         ) {
           setPhoneNumberErr('해당 사용자 전화번호는 이미 존재합니다.');
-          setPhoneNumberIsValid(false);
           setSubmit(false);
         }
         console.log(err.response.status);
