@@ -173,7 +173,6 @@ function Signup() {
     try {
       const res = await postSignup(userData);
       setSubmit(true);
-      console.log(res);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
@@ -301,7 +300,7 @@ function Signup() {
             signupForm.password &&
             signupForm.password2 &&
             signupForm.name &&
-            signupForm.name
+            signupForm.phone_number
               ? 'abled'
               : 'disabled'
           }
@@ -310,7 +309,7 @@ function Signup() {
             !signupForm.password ||
             !signupForm.password2 ||
             !signupForm.name ||
-            !signupForm.name
+            !signupForm.phone_number
           }
           size='m'
         >
