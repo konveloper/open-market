@@ -22,6 +22,7 @@ function Login() {
   const [usernameIsValid, setUsernameIsValid] = useState(false);
   const [pwErr, setPwErr] = useState('');
   const [pwIsValid, setPwIsValid] = useState(false);
+  const [submit, setSubmit] = useState(false);
 
   const navigate = useNavigate();
 
@@ -67,9 +68,14 @@ function Login() {
   const loginHandler = async (userData) => {
     try {
       await postLogin(userData);
+      setSubmit(true);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
+        if (err.response.data.FAIL_Message === '로그인 정보가 없습니다.') {
+          alert('회원이 아닙니다.');
+          setSubmit(false);
+        }
         console.log(err.response.status);
         console.log(err.response.headers);
       } else {
@@ -87,10 +93,16 @@ function Login() {
     };
     if (usernameIsValid && pwIsValid) {
       loginHandler(userData);
+    }
+  };
+
+  useEffect(() => {
+    setSubmit();
+    if (submit) {
       alert('환영합니다!');
       navigate('/home');
     }
-  };
+  }, [submit]);
 
   return (
     <ContSection>
