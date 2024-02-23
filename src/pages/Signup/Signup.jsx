@@ -31,6 +31,7 @@ function Signup() {
   const [nameIsValid, setNameisValid] = useState(false);
   const [phoneNumberErr, setPhoneNumberErr] = useState('');
   const [phoneNumberIsValid, setPhoneNumberIsValid] = useState(false);
+  const [submit, setSubmit] = useState(false);
 
   const navigate = useNavigate();
 
@@ -139,7 +140,7 @@ function Signup() {
       setPhoneNumberIsValid(false);
     } else if (!regExp.test(signupForm.phone_number)) {
       setPhoneNumberErr(
-        '핸드폰 번호는 01*으로 시작하는 10~11자리 숫자여야 합니다.'
+        '핸드폰 번호는 01*으로 시작하는 11자리 숫자여야 합니다.'
       );
       setPhoneNumberIsValid(false);
     } else {
@@ -171,6 +172,7 @@ function Signup() {
   const signupHandler = async (userData) => {
     try {
       const res = await postSignup(userData);
+      setSubmit(true);
       console.log(res);
     } catch (err) {
       if (err.response) {
@@ -181,6 +183,7 @@ function Signup() {
         ) {
           setPhoneNumberErr('해당 사용자 전화번호는 이미 존재합니다.');
           setPhoneNumberIsValid(false);
+          setSubmit(false);
         }
         console.log(err.response.status);
         console.log(err.response.headers);
@@ -207,10 +210,16 @@ function Signup() {
       phoneNumberIsValid
     ) {
       signupHandler(userData);
+    }
+  };
+
+  useEffect(() => {
+    setSubmit();
+    if (submit) {
       alert('환영합니다!');
       navigate('/login');
     }
-  };
+  }, [submit]);
 
   return (
     <SignupSection>
