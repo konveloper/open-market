@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import postUsernameIsValid from 'api/Signup/postUsernameIsValid';
 import postSignup from 'api/Signup/postSignup';
-import imgLogo from 'assets/img/logo.svg';
+import imgLogo from 'assets/img/logo.png';
 import Input from 'components/Common/Input/Input';
 import Button from 'components/Common/Button/Button';
 import {
   SignupSection,
   H2IR,
   ImgLogo,
+  TxtLogo,
   ContInputForm,
   ContUsername,
 } from './SignupStyle';
@@ -223,6 +224,7 @@ function Signup() {
     <SignupSection>
       <H2IR>회원가입 페이지</H2IR>
       <ImgLogo src={imgLogo} />
+      <TxtLogo>비긴 비건</TxtLogo>
       <ContInputForm onSubmit={submitHandler}>
         <ContUsername>
           <Input
@@ -312,7 +314,7 @@ function Signup() {
           }
           size='m'
         >
-          {'오픈 마켓 시작하기'}
+          {'비긴 비건 시작하기'}
         </Button>
       </ContInputForm>
     </SignupSection>

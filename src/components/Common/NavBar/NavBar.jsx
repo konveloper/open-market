@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImg from 'assets/img/logo.svg';
+import logoImg from 'assets/img/logo.png';
 import iconCart from 'assets/img/icon-shopping-cart.svg';
 import iconUser from 'assets/img/icon-user.svg';
 import {

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import postLogin from 'api/Login/postLogin';
-import imgLogo from 'assets/img/logo.svg';
+import imgLogo from 'assets/img/logo.png';
 import Button from 'components/Common/Button/Button';
 import Input from 'components/Common/Input/Input';
 import {
   ContSection,
   H2IR,
   ImgLogo,
+  TxtLogo,
   ContInputForm,
   ContUsername,
 } from './LoginStyle';
@@ -36,7 +37,7 @@ function Login() {
 
   const usernameHandler = () => {
     if (!loginForm.username) {
-      setUsernameErr('아이디를 추가해주세요 :)');
+      setUsernameErr('아이디는 필수 항목입니다.');
       setUsernameIsValid(false);
     } else {
       setUsernameErr('');
@@ -108,6 +109,7 @@ function Login() {
     <ContSection>
       <H2IR>로그인 페이지</H2IR>
       <ImgLogo src={imgLogo} alt='로고 이미지' />
+      <TxtLogo>비긴 비건</TxtLogo>
       <ContInputForm onSubmit={submitHandler}>
         <ContUsername>
           <Input

@@ -13,9 +13,16 @@ export const H2IR = styled.h2`
 `;
 
 export const ImgLogo = styled.img`
-  width: 238px;
-  height: 74px;
-  margin: 70px 0;
+  width: 100px;
+  height: 100px;
+  margin: 30px 0;
+`;
+
+export const TxtLogo = styled.p`
+  margin-bottom: 30px;
+  font-family: 'Gmarket Sans';
+  font-size: 3rem;
+  color: var(--main);
 `;
 
 export const ContInputForm = styled.form`

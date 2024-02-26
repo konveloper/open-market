@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import logoImg from 'assets/img/logo.svg';
-import { SplashCont, LogoImg, LogoTxt } from './SplashStyle';
+import logoImg from 'assets/img/logo.png';
+import { SplashCont, LogoImg, LogoTxt, Txt } from './SplashStyle';
 
 function Splash() {
   const [visibleSplash, setVisibleSplash] = useState(true);
@@ -16,7 +16,8 @@ function Splash() {
       <>
         <SplashCont>
           <LogoImg src={logoImg} alt='로고 이미지' />
-          <LogoTxt>당신을 위한 오픈 마켓</LogoTxt>
+          <Txt>지금 시작되는 채식 라이프</Txt>
+          <LogoTxt>비긴 비건</LogoTxt>
         </SplashCont>
       </>
     );
