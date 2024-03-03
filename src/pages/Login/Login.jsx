@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import authStore from 'store/authStore';
 import postLogin from 'api/Login/postLogin';
 import imgLogo from 'assets/img/logo.png';
 import Button from 'components/Common/Button/Button';
@@ -14,6 +15,8 @@ import {
 } from './LoginStyle';
 
 function Login() {
+  const { isAuthenticated, token, login, logout } = authStore();
+
   const [loginForm, setLoginForm] = useState({
     username: '',
     password: '',
@@ -68,13 +71,15 @@ function Login() {
 
   const loginHandler = async (userData) => {
     try {
-      await postLogin(userData);
+      const res = await postLogin(userData);
       setSubmit(true);
+      console.log(res.token);
+      login(res.token);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
         if (err.response.data.FAIL_Message === '로그인 정보가 없습니다.') {
-          alert('회원이 아닙니다.');
+          alert('로그인 정보가 없습니다.');
           setSubmit(false);
         }
         console.log(err.response.status);
