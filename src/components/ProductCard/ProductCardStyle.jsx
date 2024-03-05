@@ -5,7 +5,6 @@ export const ProductLi = styled.li`
   height: 300px;
   display: flex;
   flex-direction: column;
-  position: absolute;
 `;
 
 export const ProductImg = styled.img`

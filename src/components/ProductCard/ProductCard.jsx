@@ -1,5 +1,4 @@
 import React from 'react';
-import ImgItem from 'assets/img/img-item.jpg';
 import {
   ProductLi,
   ProductImg,
@@ -8,13 +7,13 @@ import {
   PriceTxt,
 } from './ProductCardStyle';
 
-function ProductCard() {
+function ProductCard({ product, getProductList }) {
   return (
-    <ProductLi>
-      <ProductImg src={ImgItem} alt='제품 이미지' />
-      <SellerName>풍년 마켓</SellerName>
-      <ProductName>싱싱한 야채</ProductName>
-      <PriceTxt>10000원</PriceTxt>
+    <ProductLi getProductList={getProductList}>
+      <ProductImg src={product.image} alt='제품 이미지' />
+      <SellerName>{product.seller_store}</SellerName>
+      <ProductName>{product.product_name}</ProductName>
+      <PriceTxt>{product.price}</PriceTxt>
     </ProductLi>
   );
 }

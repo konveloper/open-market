@@ -9,5 +9,4 @@ export const ProductCont = styled.div`
   ${Cont}
   width: 1024px;
   margin: 150px auto;
-  background-color: antiquewhite;
 `;
