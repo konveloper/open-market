@@ -25,9 +25,9 @@ export const DivLeft = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  width: 124px;
-  height: 45px;
-  margin: 20px;
+  width: 80px;
+  height: 80px;
+  margin: 10px;
 `;
 
 export const ShearchInput = styled.input`

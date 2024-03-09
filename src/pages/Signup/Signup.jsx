@@ -224,7 +224,7 @@ function Signup() {
     <SignupSection>
       <H2IR>회원가입 페이지</H2IR>
       <ImgLogo src={imgLogo} />
-      <TxtLogo>비긴 비건</TxtLogo>
+      <TxtLogo>Veganuary</TxtLogo>
       <ContInputForm onSubmit={submitHandler}>
         <ContUsername>
           <Input
@@ -314,7 +314,7 @@ function Signup() {
           }
           size='m'
         >
-          {'비긴 비건 시작하기'}
+          {'비거뉴어리 시작하기'}
         </Button>
       </ContInputForm>
     </SignupSection>

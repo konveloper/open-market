@@ -16,8 +16,8 @@ function Splash() {
       <>
         <SplashCont>
           <LogoImg src={logoImg} alt='로고 이미지' />
-          <Txt>지금 시작되는 채식 라이프</Txt>
-          <LogoTxt>비긴 비건</LogoTxt>
+          <Txt>지금 시작되는 지속가능한 뷰티</Txt>
+          <LogoTxt>Veganuary</LogoTxt>
         </SplashCont>
       </>
     );

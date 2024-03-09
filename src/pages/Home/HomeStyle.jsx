@@ -8,5 +8,5 @@ export const H2IR = styled.h2`
 export const ProductCont = styled.div`
   ${Cont}
   width: 1024px;
-  margin: 150px auto;
+  margin: 150px auto 50px;
 `;
