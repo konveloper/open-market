@@ -20,26 +20,24 @@ export const SplashCont = styled.div`
   ${Cont}
   text-align: center;
   color: var(--main-grey);
-  background: linear-gradient(334deg, #f0f4c3, #80deea, #dcedc8);
+  background: linear-gradient(
+    334deg,
+    rgb(141, 176, 250),
+    rgb(200, 161, 255),
+    rgb(255, 127, 172)
+  );
   animation: 3s ${splashFade} ease-out;
 `;
 
 export const LogoImg = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   margin: 200px 0 auto;
 `;
 
 export const LogoTxt = styled.p`
-  margin-top: 20px;
+  margin-top: 50px;
   font-family: 'Gmarket Sans';
-  font-size: 3rem;
-  color: #fff;
-`;
-
-export const Txt = styled.p`
-  margin-top: 20px;
-  font-family: 'Gmarket Sans';
-  font-size: 2rem;
+  font-size: 4rem;
   color: #fff;
 `;

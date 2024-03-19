@@ -3,15 +3,10 @@ import ProductCard from 'components/ProductCard/ProductCard';
 import { ProductCardUl } from './ProductCardLiStyle';
 
 export default function ProductCardLi({ productList, getProductList }) {
-  const filteredProducts = productList.filter(
-    (product) => product.store_name === 'our'
-  );
-  console.log(filteredProducts);
-
   return (
     <ProductCardUl>
-      {filteredProducts.length > 0 ? (
-        filteredProducts.map((product) => (
+      {productList.length > 0 ? (
+        productList.map((product) => (
           <ProductCard product={product} getProductList={getProductList} />
         ))
       ) : (

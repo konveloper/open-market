@@ -25,16 +25,16 @@ export const DivLeft = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  width: 80px;
-  height: 80px;
-  margin: 10px;
+  width: 60px;
+  height: 60px;
+  margin: 15px;
 `;
 
 export const ShearchInput = styled.input`
   width: 400px;
   height: 46px;
   padding: 13px 22px;
-  margin-top: 20px;
+  margin: 20px 0 0 20px;
   outline: 2px solid var(--point);
   border: none;
   border-radius: 50px;
@@ -54,7 +54,7 @@ export const DivRight = styled.div`
 export const BtnCart = styled.button`
   width: 40px;
   height: 50px;
-  margin: 20px;
+  margin: 10px;
 `;
 
 export const BtnMyPage = styled.button`

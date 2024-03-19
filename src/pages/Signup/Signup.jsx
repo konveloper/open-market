@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import postUsernameIsValid from 'api/Signup/postUsernameIsValid';
 import postSignup from 'api/Signup/postSignup';
-import imgLogo from 'assets/img/logo.png';
+import imgLogo from 'assets/img/logo.svg';
 import Input from 'components/Common/Input/Input';
 import Button from 'components/Common/Button/Button';
 import {
@@ -224,7 +224,7 @@ function Signup() {
     <SignupSection>
       <H2IR>회원가입 페이지</H2IR>
       <ImgLogo src={imgLogo} />
-      <TxtLogo>Veganuary</TxtLogo>
+      <TxtLogo>트레저 마켓</TxtLogo>
       <ContInputForm onSubmit={submitHandler}>
         <ContUsername>
           <Input
@@ -314,7 +314,7 @@ function Signup() {
           }
           size='m'
         >
-          {'비거뉴어리 시작하기'}
+          {'시작하기'}
         </Button>
       </ContInputForm>
     </SignupSection>

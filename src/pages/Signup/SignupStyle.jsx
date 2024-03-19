@@ -22,7 +22,7 @@ export const TxtLogo = styled.p`
   margin-bottom: 30px;
   font-family: 'Gmarket Sans';
   font-size: 3rem;
-  color: var(--main);
+  color: var(--point);
 `;
 
 export const ContInputForm = styled.form`
