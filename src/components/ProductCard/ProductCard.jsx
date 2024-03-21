@@ -11,8 +11,7 @@ import {
 function ProductCard({ product, getProductList }) {
   const navigate = useNavigate();
 
-  const productDetailHanlder = ({ product }) => {
-    console.log(product);
+  const productDetailHandler = ({ product }) => {
     navigate(`/products/${product.product_id}`, {
       state: {
         image: product.image,
@@ -29,7 +28,7 @@ function ProductCard({ product, getProductList }) {
       <ProductImg
         src={product.image}
         alt='제품 이미지'
-        onClick={() => productDetailHanlder({ product })}
+        onClick={() => productDetailHandler({ product })}
       />
       <StoreName>{product.store_name}</StoreName>
       <ProductName>{product.product_name}</ProductName>

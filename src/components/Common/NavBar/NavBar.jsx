@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import logoImg from 'assets/img/logo.svg';
 import iconCart from 'assets/img/icon-shopping-cart.svg';
 import iconUser from 'assets/img/icon-user.svg';
@@ -14,11 +15,17 @@ import {
 } from './NavBarStyle';
 
 function NavBar() {
+  const navigate = useNavigate();
+
+  const navigatelHandler = () => {
+    navigate(`/home`);
+  };
+
   return (
     <NavCont>
       <H2IR>네비게이션 바</H2IR>
       <DivLeft>
-        <LogoImg src={logoImg} alt='로고' />
+        <LogoImg src={logoImg} alt='로고' onClick={() => navigatelHandler()} />
         <ShearchInput placeholder='상품을 검색해보세요!' />
       </DivLeft>
       <DivRight>
