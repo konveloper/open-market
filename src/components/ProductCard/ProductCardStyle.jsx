@@ -14,9 +14,10 @@ export const ProductImg = styled.img`
   border-radius: 10px;
 `;
 
-export const SellerName = styled.p`
+export const StoreName = styled.p`
   margin-top: 12px;
   font-size: 1.4rem;
+  color: var(--main-grey);
 `;
 
 export const ProductName = styled.p`
