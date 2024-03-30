@@ -17,20 +17,28 @@ import {
 function NavBar() {
   const navigate = useNavigate();
 
-  const navigatelHandler = () => {
+  const homeHandler = () => {
     navigate(`/home`);
+  };
+
+  const cartHandler = () => {
+    navigate(`/cart`);
   };
 
   return (
     <NavCont>
       <H2IR>네비게이션 바</H2IR>
       <DivLeft>
-        <LogoImg src={logoImg} alt='로고' onClick={() => navigatelHandler()} />
+        <LogoImg src={logoImg} alt='로고' onClick={() => homeHandler()} />
         <ShearchInput placeholder='상품을 검색해보세요!' />
       </DivLeft>
       <DivRight>
         <BtnCart>
-          <img src={iconCart} alt='장바구니 이미지' />
+          <img
+            src={iconCart}
+            alt='장바구니 이미지'
+            onClick={() => cartHandler()}
+          />
           장바구니
         </BtnCart>
         <BtnMyPage>
