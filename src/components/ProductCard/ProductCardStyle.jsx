@@ -10,6 +10,7 @@ export const ProductLi = styled.li`
 export const ProductImg = styled.img`
   width: 250px;
   height: 250px;
+  object-fit: cover;
   border: 1px solid var(--sub-grey);
   border-radius: 10px;
 `;
