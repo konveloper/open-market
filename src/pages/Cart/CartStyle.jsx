@@ -7,6 +7,7 @@ export const H2IR = styled.h2`
 
 export const Title = styled.p`
   font-size: 2rem;
+  font-weight: 500;
   text-align: center;
 `;
 
@@ -32,7 +33,7 @@ export const ContentCont = styled.div`
   padding: 10px;
 `;
 
-export const TotalCheckInput = styled.input`
+export const TotalCheckBox = styled.input`
   appearance: none;
   width: 15px;
   height: 15px;

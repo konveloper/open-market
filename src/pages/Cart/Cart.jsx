@@ -1,13 +1,8 @@
 import React from 'react';
 import NavBar from 'components/Common/NavBar/NavBar';
+import CartCard from 'components/CartCard/CartCard';
 import Footer from 'components/Common/Footer/Footer';
-import {
-  H2IR,
-  Title,
-  CartCont,
-  ContentCont,
-  TotalCheckInput,
-} from './CartStyle';
+import { H2IR, Title, CartCont, ContentCont, TotalCheckBox } from './CartStyle';
 
 function Cart() {
   return (
@@ -17,11 +12,12 @@ function Cart() {
       <CartCont>
         <Title>장바구니</Title>
         <ContentCont>
-          <TotalCheckInput type='checkbox' />
+          <TotalCheckBox type='checkbox' />
           <p>상품정보</p>
           <p>수량</p>
           <p>상품 금액</p>
         </ContentCont>
+        <CartCard />
       </CartCont>
       <Footer />
     </>
