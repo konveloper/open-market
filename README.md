@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+# 💳 오픈마켓 (React) 💳
+* 🔗 배포 URL
+* 🔒 서비스 이용 계정
+  - ID: seller
+  - PW : seller123
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* **목차**
+1. [프로젝트 소개](#1-프로젝트-소개)
+2. [개발 환경](#2-개발-환경)
+3. [구현 기능](#3-구현-기능)
+4. [기능 명세](#4-기능-명세)
+5. [특징](#5-특징)
+6. [폴더 구조](#6-폴더-구조)
 
-## Available Scripts
+## 1. 프로젝트 소개
+* 오픈 마켓은 React를 사용하여 상품 등록, 결제, 상품에 대한 CRUD를 직접 구현해보는 개인 프로젝트입니다.
+* 오픈마켓에 등록되어 있는 상품을 구매하고자 한다면 상품의 세부사항을 확인한 뒤, 장바구니에 넣고, 상품을 구매할 수 있습니다.
 
-In the project directory, you can run:
 
-### `npm start`
+## 2. 개발 환경
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| 제목             | 내용                                               | 
+| ---------------- | -------------------------------------------------- |
+| Front-End        | `React` <br> `Styled Components` |
+| Back-End         | 제공되는 API 사용                                  |
+| 버전 및 이슈관리 | `Git`<br>`GitHub`                      |
+| 상태관리 | `Zustand`|
+|배포           |`Netlify`|
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 3. 구현 기능
+- 로그인 페이지
+- 회원 가입 페이지
+- 상품 목록 페이지
+- 상품 상세 페이지
+- 장바구니 페이지
+- 주문/결제 페이지
 
-### `npm test`
+## 4. 기능 명세
+**1) 로그인 페이지**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 아이디나 비밀번호가 일치하지 않거나, 아이디나 비밀번호를 입력하지 않은 채 로그인 버튼을 누르면 경고 문구가 나타납니다.
+- 입력 창 아래에 경고창이 나타나면 로그인 버튼을 눌러도 로그인 되지 않습니다.
+- 입력 창에 입력이 안된 부분이 존재한 채로 로그인 버튼을 누르면 입력되지 않은 입력 창에 focus 이벤트가 작동하고 로그인은 되지 않습니다.
+- 아이디나 비밀번호가 일치하지 않는다면, 비밀번호 입력창에 focus이벤트가 발생하고 빈칸이 됩니다.
+- 로그인이 성공할 시, 로그인하기 이전 페이지로 이동합니다.
+- 구매자 : 구매 회원 로그인 탭을 클릭하면 구매 회원으로 로그인합니다.
+- 판매자 : 판매 회원 로그인 탭을 클릭하면 판매 회원으로 로그인합니다.
 
-### `npm run build`
+**2) 회원가입 페이지**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 회원가입 할 때는 모든 입력을 완료하고 동의하기 체크를 눌러야만 회원가입이 가능합니다.
+- 회원 정보 입력 후 회원가입 버튼을 누르면 로그인 페이지로 이동합니다.
+- 아이디의 중복 확인 버튼을 눌렀을 때 중복이 된다면 입력창 아래에 경고 문구가 나타납니다.
+- 구매자 : 구매 회원 가입 탭을 누르고, 모든 입력을 마친 뒤(이용약관 체크박스 포함) 가입하기 버튼을 누르면 구매자로 회원가입이 됩니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**3) 상품 목록 페이지**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 목록에서 상품을 클릭하면 상품 상세 페이지로 이동합니다.
+- 상품에는 상품 판매자, 상품명, 가격이 보여집니다.
 
-### `npm run eject`
+**4) 상품 상세 페이지**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- productId에 해당하는 상품을 불러오고, 해당 상품 정보를 보여줍니다.
+- `+` 버튼과 `-` 버튼을 사용해야만 수량 변경이 가능합니다.
+- 수량을 변경할 때 현재 상품의 재고 수량을 초과하면 `+` 버튼이 비활성화됩니다.
+- 선택된 옵션에 맞춰서 가격을 계산하고, 총 가격이 나타나야 합니다.
+- 이미 선택된 상품을 다시 선택하였을 때, 상품은 추가되지 않아야 합니다.
+- 바로 구매 버튼을 눌렀을 시, 결제 페이지로 넘어갑니다.
+- 장바구니 버튼을 눌렀을 시, 장바구니 페이지로 이동합니다. (상품 상세 페이지에서 선택한 제품은 장바구니에 추가됩니다.)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**5) 장바구니 페이지**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 장바구니에서 상품의 수량을 수정할 때, `+`나 `-` 버튼을 누르면 수량 수정을 위한 모달창이 나타납니다. 모달창에서 (상품 상세 페이지와 마찬가지로) 상품의 재고 수량을 초과하면 `+` 버튼은 비활성화됩니다.
+- 선택된 정보만 총 상품금액과 할인, 배송비가 적용되어 총 결제할 가격이 나타나야 합니다.
+- 상품의 `x` 버튼을 클릭할 시 상품 삭제를 재확인하는 모달 창이 중앙에 나타나야 합니다.
+- 상품 삭제를 재확인하는 모달의 확인 버튼을 클릭하면 상품이 삭제되어야 합니다.
+- 이미 장바구니에 넣은 제품을 다시 넣는 경우, 이전 수량과 합쳐집니다.
+    - 이미 넣은 제품의 수량 2개, 다시 넣은 제품의 수량 3개 ⇒ 장바구니에 들어간 상품의 수량은 총 5개)
+    - 합쳐진 수량이 제품의 재고 수량 보다 많을 경우, 재고 수량이 초과 되었다는 모달창이 나타납니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**6) 페이지 상단 글로벌 네비게이션 영역(GNB)**
 
-## Learn More
+- 상단 검색창은 UI로만 존재합니다.
+- 구매 회원, 비로그인 회원의 페이지 상단 바에는 검색창과 장바구니 버튼만 존재합니다.
+- 장바구니 버튼을 누르면 장바구니 페이지로 이동합니다(비로그인 유저일 경우 모달창으로 로그인 안내)
+- 판매회원의 페이지 상위 버튼에는 마이페이지 버튼과 판매자 센터 버튼만 있어야 하며, 클릭 시 판매자 센터 페이지로 이동합니다.(장바구니 버튼은 사라집니다.)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**7) 주문/결제 페이지**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 주문/결제 페이지에서 상품 정보는 수정 불가합니다.
+- 배송 정보 칸에 주문자 정보와 배송지 정보를 입력할 수 있어야 합니다.
+- 모든 입력이 완료되어야 결제하기 버튼이 활성화됩니다.
+- 결제하기 버튼을 누르면 결제가 진행됩니다.
 
-### Code Splitting
+**8) 로그인을 요청하는 모달**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 비로그인 사용자는 장바구니, 바로구매를 클릭했을 시 로그인을 해달라는 모달 창이 떠야합니다.
 
-### Analyzing the Bundle Size
+**9) 마이페이지** 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 상단 네비게이션에 있는 마이페이지를 클릭하면, 마이페이지,로그아웃 기능이 있는 드롭다운 박스가 생깁니다.
+- 드롭다운 박스에 있는 마이페이지는 UI로만 존재합니다.
+- 드롭다운 박스에 있는 로그아웃을 클릭했을 시, 로그아웃 됩니다.
+- 마이페이지 아이콘을 `클릭`했을 때 
+  - 마이페이지 아이콘이 메인컬러로 변경됩니다.
+  - 드롭다운 UI가 나타나며 백그라운드를 클릭하면 UI가 사라집니다.
 
-### Making a Progressive Web App
+**10) 푸터(Footer)**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 5. 특징
 
-### Advanced Configuration
+## 6. 폴더 구조
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
