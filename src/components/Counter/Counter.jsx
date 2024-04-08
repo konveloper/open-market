@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { CounterCont, BtnLeft, BtnRight, Num } from './CounterStyle';
+import React from 'react';
+import { CounterCont, BtnLeft, BtnRight, InputNum } from './CounterStyle';
 
-function Counter({ products }) {
-  console.log(products);
-  const [count, setCount] = useState(0);
-
-  const subtractHandler = () => {
-    setCount(count - 1);
-  };
-
-  const addHandler = () => {
-    setCount(count + 1);
-  };
-
+function Counter({ qty, stock, onClick }) {
   return (
     <CounterCont>
-      <BtnLeft onClick={subtractHandler}>-</BtnLeft>
-      <Num>{count}</Num>
-      <BtnRight onClick={addHandler}>+</BtnRight>
+      <BtnLeft onClick={() => onClick(-1)} disabled={qty === 1}>
+        -
+      </BtnLeft>
+      <InputNum type='number' value={qty} min={1} max={stock} readOnly />
+      <BtnRight
+        onClick={() => onClick(+1)}
+        disabled={stock < 1 || qty === stock}
+      >
+        +
+      </BtnRight>
     </CounterCont>
   );
 }

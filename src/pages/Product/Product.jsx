@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import NavBar from 'components/Common/NavBar/NavBar';
 import Counter from 'components/Counter/Counter';
@@ -15,7 +15,9 @@ import {
   DeliveryTxt,
   InfoTxt,
   TotalCont,
+  QtySpan,
   QtyTxt,
+  PriceSpan,
   PriceTxt,
   QtyCont,
   BuyBtn,
@@ -24,8 +26,15 @@ import {
 
 function Product() {
   const location = useLocation();
-  const info = location.state;
-  console.log(info);
+  const product = location.state;
+  console.log(product);
+  const [qty, setQty] = useState(1);
+  const [total, setTotal] = useState(product.price);
+
+  const counterHandler = (num) => {
+    setQty((prev) => prev + num);
+    setTotal((prev) => prev + product.price * num);
+  };
 
   return (
     <>
@@ -33,22 +42,26 @@ function Product() {
       <ProductCont>
         <H2IR>제품 상세 페이지</H2IR>
         <div>
-          <ProductImg src={info.image} alt='제품 이미지' />
+          <ProductImg src={product.image} alt='제품 이미지' />
         </div>
         <InfoCont>
           <div>
-            <StoreName>{info.storeName}</StoreName>
-            <ProductName>{info.productName}</ProductName>
-            <Price>{info.price}원</Price>
+            <StoreName>{product.storeName}</StoreName>
+            <ProductName>{product.productName}</ProductName>
+            <Price>{product.price.toLocaleString()}원</Price>
           </div>
           <InfoBottomCont>
             <DeliveryTxt>택배 배송 / 무료 배송</DeliveryTxt>
-            <Counter products={info} />
+            <Counter onClick={counterHandler} stock={product.stock} qty={qty} />
             <TotalCont>
               <InfoTxt>총 상품 금액</InfoTxt>
               <QtyCont>
-                <QtyTxt>총 수량 1개</QtyTxt>
-                <PriceTxt>{info.price}원</PriceTxt>
+                <QtySpan>
+                  총 수량 <QtyTxt>{qty}</QtyTxt>개
+                </QtySpan>
+                <PriceSpan>
+                  <PriceTxt>{total.toLocaleString()}</PriceTxt>원
+                </PriceSpan>
               </QtyCont>
             </TotalCont>
             <div>

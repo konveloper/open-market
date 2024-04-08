@@ -69,12 +69,25 @@ export const QtyCont = styled.div`
   align-items: center;
 `;
 
-export const QtyTxt = styled.p`
+export const QtySpan = styled.span`
+  color: var(--main-grey);
+  font-size: 1.4rem;
+  border-right: 1px solid var(--sub-grey);
+  padding-right: 10px;
+`;
+
+export const QtyTxt = styled.strong`
+  color: var(--main);
+  font-size: 1.4rem;
+  font-weight: 500;
+`;
+
+export const PriceSpan = styled.span`
   color: var(--main);
   font-size: 1.4rem;
 `;
 
-export const PriceTxt = styled.p`
+export const PriceTxt = styled.strong`
   color: var(--main);
   font-size: 3rem;
 `;

@@ -22,12 +22,10 @@ export const BtnRight = styled.button`
   color: var(--sub-grey);
 `;
 
-export const Num = styled.span`
+export const InputNum = styled.input`
   width: 40px;
   height: 40px;
   border: 1px solid var(--sub-grey);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 1.4rem;
+  text-align: right;
 `;

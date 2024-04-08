@@ -32,7 +32,7 @@ function ProductCard({ product, getProductList }) {
       />
       <StoreName>{product.store_name}</StoreName>
       <ProductName>{product.product_name}</ProductName>
-      <PriceTxt>{product.price}원</PriceTxt>
+      <PriceTxt>{product.price.toLocaleString()}원</PriceTxt>
     </ProductLi>
   );
 }
