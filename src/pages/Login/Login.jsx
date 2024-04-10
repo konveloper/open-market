@@ -16,7 +16,6 @@ import {
 
 function Login() {
   const { isAuthenticated, token, login, logout } = authStore();
-
   const [loginForm, setLoginForm] = useState({
     username: '',
     password: '',
@@ -73,8 +72,8 @@ function Login() {
     try {
       const res = await postLogin(userData);
       setSubmit(true);
-      console.log(res.token);
       login(res.token);
+      localStorage.setItem('auth', JSON.stringify(res.token));
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
@@ -114,7 +113,7 @@ function Login() {
     <ContSection>
       <H2IR>로그인 페이지</H2IR>
       <ImgLogo src={imgLogo} alt='로고 이미지' />
-      <TxtLogo>트레저 마켓</TxtLogo>
+      <TxtLogo>아무거나 마켓</TxtLogo>
       <ContInputForm onSubmit={submitHandler}>
         <ContUsername>
           <Input
