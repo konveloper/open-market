@@ -73,7 +73,7 @@ function Login() {
       const res = await postLogin(userData);
       setSubmit(true);
       login(res.token);
-      localStorage.setItem('auth', JSON.stringify(res.token));
+      localStorage.setItem('token', res.token);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
