@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import postCart from 'api/Cart/postCart';
 import NavBar from 'components/Common/NavBar/NavBar';
 import Counter from 'components/Counter/Counter';
 import Footer from 'components/Common/Footer/Footer';
@@ -28,12 +29,28 @@ function Product() {
   const location = useLocation();
   const product = location.state;
   console.log(product);
+  const productId = product.productId;
   const [qty, setQty] = useState(1);
   const [total, setTotal] = useState(product.price);
 
   const counterHandler = (num) => {
     setQty((prev) => prev + num);
     setTotal((prev) => prev + product.price * num);
+  };
+
+  const addCartHandler = async () => {
+    try {
+      const res = await postCart(productId, qty);
+      console.log(res);
+    } catch (err) {
+      if (err.response) {
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else {
+        console.log(`Error: ${err.message}`);
+      }
+    }
   };
 
   return (
@@ -66,7 +83,7 @@ function Product() {
             </TotalCont>
             <div>
               <BuyBtn>바로 구매</BuyBtn>
-              <CartBtn>장바구니</CartBtn>
+              <CartBtn onClick={addCartHandler}>장바구니</CartBtn>
             </div>
           </InfoBottomCont>
         </InfoCont>

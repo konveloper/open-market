@@ -14,6 +14,7 @@ function ProductCard({ product, getProductList }) {
   const productDetailHandler = ({ product }) => {
     navigate(`/products/${product.product_id}`, {
       state: {
+        productId: product.product_id,
         image: product.image,
         storeName: product.store_name,
         productName: product.product_name,
