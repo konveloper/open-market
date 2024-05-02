@@ -1,6 +1,5 @@
-import React from 'react';
-import imgItem from 'assets/img/img-item.jpg';
-import Counter from 'components/Counter/Counter';
+import React, { useState, useEffect } from 'react';
+import getProducts from 'api/Product/getProducts';
 import {
   CartCardCont,
   CheckBox,
@@ -10,28 +9,66 @@ import {
   ProductName,
   Price,
   DeliveryTxt,
+  CounterCont,
+  BtnLeft,
+  InputNum,
+  BtnRight,
   OrderCont,
   OrderPrice,
   OrderBtn,
   DeleteBtn,
 } from './CartCardStyle';
 
-function CartCard() {
+function CartCard({ item }) {
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    async function getProductId() {
+      try {
+        const res = await getProducts();
+        const products = res.results;
+        const matchedProduct = products.find(
+          (product) => product.product_id === item.product_id
+        );
+        setProduct(matchedProduct);
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    }
+    getProductId();
+  }, [item.product_id]);
+
   return (
     <CartCardCont>
       <CheckBox type='checkbox' />
       <ProductInfoCont>
-        <Img src={imgItem} />
-        <div>
-          <StoreName>셀러 네임</StoreName>
-          <ProductName>프로덕트 네임</ProductName>
-          <Price>가격</Price>
-          <DeliveryTxt>택배 배송 / 무료 배송</DeliveryTxt>
-        </div>
+        {product && (
+          <>
+            <Img src={product.image} />
+            <div>
+              <StoreName>{product.store_name}</StoreName>
+              <ProductName>{product.product_name}</ProductName>
+              <Price>{product && product.price.toLocaleString()}원</Price>
+              <DeliveryTxt>택배 배송 / 무료 배송</DeliveryTxt>
+            </div>
+          </>
+        )}
       </ProductInfoCont>
-      <Counter />
+      <CounterCont>
+        <BtnLeft>-</BtnLeft>
+        <InputNum type='number' value={item.quantity} min={1} readOnly />
+        <BtnRight>+</BtnRight>
+      </CounterCont>
       <OrderCont>
-        <OrderPrice>가격</OrderPrice>
+        <OrderPrice>
+          {product ? product.price.toLocaleString() : ''}원
+        </OrderPrice>
         <OrderBtn>주문하기</OrderBtn>
       </OrderCont>
       <DeleteBtn>x</DeleteBtn>

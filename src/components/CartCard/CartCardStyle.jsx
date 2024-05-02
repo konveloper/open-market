@@ -7,8 +7,8 @@ export const CartCardCont = styled.div`
   border-radius: 10px;
   margin: 10px 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 10px;
 `;
 
@@ -30,6 +30,7 @@ export const ProductInfoCont = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  width: 300px;
 `;
 
 export const Img = styled.img`
@@ -56,6 +57,36 @@ export const Price = styled.p`
 export const DeliveryTxt = styled.p`
   padding-top: 30px;
   color: var(--main-grey);
+`;
+
+export const CounterCont = styled.div`
+  display: flex;
+`;
+
+export const BtnLeft = styled.button`
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--sub-grey);
+  border-radius: 5px 0 0 5px;
+  font-size: 3rem;
+  color: var(--sub-grey);
+`;
+
+export const BtnRight = styled.button`
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--sub-grey);
+  border-radius: 0 5px 5px 0;
+  font-size: 3rem;
+  color: var(--sub-grey);
+`;
+
+export const InputNum = styled.input`
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--sub-grey);
+  font-size: 1.4rem;
+  text-align: right;
 `;
 
 export const OrderCont = styled.div`
