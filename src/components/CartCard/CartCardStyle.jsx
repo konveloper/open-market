@@ -59,6 +59,13 @@ export const DeliveryTxt = styled.p`
   color: var(--main-grey);
 `;
 
+export const QtyCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+`;
+
 export const CounterCont = styled.div`
   display: flex;
 `;
@@ -79,6 +86,15 @@ export const BtnRight = styled.button`
   border-radius: 0 5px 5px 0;
   font-size: 3rem;
   color: var(--sub-grey);
+`;
+
+export const ConfirmBtn = styled.button`
+  width: 100px;
+  height: 30px;
+  background-color: var(--point);
+  border-radius: 5px;
+  color: white;
+  font-size: 1.2rem;
 `;
 
 export const InputNum = styled.input`

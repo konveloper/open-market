@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import getProducts from 'api/Product/getProducts';
+import putCart from 'api/Cart/putCart';
 import {
   CartCardCont,
   CheckBox,
@@ -9,10 +10,12 @@ import {
   ProductName,
   Price,
   DeliveryTxt,
+  QtyCont,
   CounterCont,
   BtnLeft,
   InputNum,
   BtnRight,
+  ConfirmBtn,
   OrderCont,
   OrderPrice,
   OrderBtn,
@@ -21,6 +24,7 @@ import {
 
 function CartCard({ item }) {
   const [product, setProduct] = useState(null);
+  const [qty, setQty] = useState(item.quantity);
 
   useEffect(() => {
     async function getProductId() {
@@ -44,6 +48,27 @@ function CartCard({ item }) {
     getProductId();
   }, [item.product_id]);
 
+  const counterHandler = (num) => {
+    setQty((prev) => prev + num);
+  };
+
+  async function cartChangeHandler() {
+    try {
+      const res = await putCart({ item, qty });
+      console.log(res);
+    } catch (err) {
+      {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    }
+  }
+
   return (
     <CartCardCont>
       <CheckBox type='checkbox' />
@@ -60,14 +85,19 @@ function CartCard({ item }) {
           </>
         )}
       </ProductInfoCont>
-      <CounterCont>
-        <BtnLeft>-</BtnLeft>
-        <InputNum type='number' value={item.quantity} min={1} readOnly />
-        <BtnRight>+</BtnRight>
-      </CounterCont>
+      <QtyCont>
+        <CounterCont>
+          <BtnLeft onClick={() => counterHandler(-1)} disabled={qty === 1}>
+            -
+          </BtnLeft>
+          <InputNum type='number' value={qty} min={1} readOnly />
+          <BtnRight onClick={() => counterHandler(+1)}>+</BtnRight>
+        </CounterCont>
+        <ConfirmBtn onClick={() => cartChangeHandler(item)}>수정</ConfirmBtn>
+      </QtyCont>
       <OrderCont>
         <OrderPrice>
-          {product ? product.price.toLocaleString() : ''}원
+          {product ? (product.price * qty).toLocaleString() : ''}원
         </OrderPrice>
         <OrderBtn>주문하기</OrderBtn>
       </OrderCont>
