@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import getProducts from 'api/Product/getProducts';
 import putCart from 'api/Cart/putCart';
+import deleteCart from 'api/Cart/deleteCart';
 import {
   CartCardCont,
   CheckBox,
@@ -69,6 +70,23 @@ function CartCard({ item }) {
     }
   }
 
+  async function cartDeleteHandler() {
+    try {
+      const res = await deleteCart({ item });
+      console.log(res);
+    } catch (err) {
+      {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    }
+  }
+
   return (
     <CartCardCont>
       <CheckBox type='checkbox' />
@@ -101,7 +119,7 @@ function CartCard({ item }) {
         </OrderPrice>
         <OrderBtn>주문하기</OrderBtn>
       </OrderCont>
-      <DeleteBtn>x</DeleteBtn>
+      <DeleteBtn onClick={() => cartDeleteHandler()}>x</DeleteBtn>
     </CartCardCont>
   );
 }
