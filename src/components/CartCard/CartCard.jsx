@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import getProducts from 'api/Product/getProducts';
 import putCart from 'api/Cart/putCart';
 import deleteCart from 'api/Cart/deleteCart';
+import useCartStore from 'store/useCartStore';
 import {
   CartCardCont,
   CheckBox,
@@ -26,6 +27,7 @@ import {
 function CartCard({ item }) {
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(item.quantity);
+  const removeCartItem = useCartStore((state) => state.removeCartItem);
 
   useEffect(() => {
     async function getProductId() {
@@ -72,8 +74,8 @@ function CartCard({ item }) {
 
   async function cartDeleteHandler() {
     try {
-      const res = await deleteCart({ item });
-      console.log(res);
+      await deleteCart({ item });
+      removeCartItem(item.cart_item_id);
     } catch (err) {
       {
         if (err.response) {

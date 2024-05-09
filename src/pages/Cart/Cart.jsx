@@ -3,10 +3,13 @@ import getCart from 'api/Cart/getCart';
 import NavBar from 'components/Common/NavBar/NavBar';
 import CartCard from 'components/CartCard/CartCard';
 import Footer from 'components/Common/Footer/Footer';
+import useCartStore from 'store/useCartStore';
 import { H2IR, Title, CartCont, ContentCont, TotalCheckBox } from './CartStyle';
 
 function Cart() {
-  const [cartItems, setCartItems] = useState([]);
+  const cartItems = useCartStore((state) => state.cartItems);
+  const setCartItems = useCartStore((state) => state.setCartItems);
+  const removeCartItem = useCartStore((state) => state.removeCartItem);
 
   useEffect(() => {
     async function getCartItems() {
@@ -24,7 +27,11 @@ function Cart() {
       }
     }
     getCartItems();
-  }, []);
+  }, [setCartItems]);
+
+  const removeCartItemHandler = (item) => {
+    removeCartItem(item.cart_item_id);
+  };
 
   return (
     <>
@@ -39,7 +46,11 @@ function Cart() {
           <p>상품 금액</p>
         </ContentCont>
         {cartItems.map((item) => (
-          <CartCard key={item.id} item={item} />
+          <CartCard
+            key={item.id}
+            item={item}
+            removeCartItem={removeCartItemHandler}
+          />
         ))}
       </CartCont>
       <Footer />
