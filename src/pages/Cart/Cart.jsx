@@ -4,12 +4,21 @@ import NavBar from 'components/Common/NavBar/NavBar';
 import CartCard from 'components/CartCard/CartCard';
 import Footer from 'components/Common/Footer/Footer';
 import useCartStore from 'store/useCartStore';
-import { H2IR, Title, CartCont, ContentCont, TotalCheckBox } from './CartStyle';
+import {
+  H2IR,
+  Title,
+  CartCont,
+  ContentCont,
+  AllCheckBox,
+  AllDeleteBtn,
+} from './CartStyle';
 
 function Cart() {
   const cartItems = useCartStore((state) => state.cartItems);
   const setCartItems = useCartStore((state) => state.setCartItems);
   const removeCartItem = useCartStore((state) => state.removeCartItem);
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [allChecked, setAllChecked] = useState(false);
 
   useEffect(() => {
     async function getCartItems() {
@@ -29,6 +38,25 @@ function Cart() {
     getCartItems();
   }, [setCartItems]);
 
+  const checkedHandler = (id) => {
+    const isChecked = checkedItems.includes(id);
+    if (isChecked) {
+      setCheckedItems((prev) => prev.filter((el) => el !== id));
+      setAllChecked(false);
+    } else {
+      setCheckedItems((prev) => [...prev, id]);
+    }
+  };
+
+  const allCheckedHandler = () => {
+    setAllChecked((prev) => !prev);
+    if (!allChecked) {
+      setCheckedItems(cartItems.map((item) => item.cart_item_id));
+    } else {
+      setCheckedItems([]);
+    }
+  };
+
   const removeCartItemHandler = (item) => {
     removeCartItem(item.cart_item_id);
   };
@@ -40,18 +68,24 @@ function Cart() {
       <CartCont>
         <Title>장바구니</Title>
         <ContentCont>
-          <TotalCheckBox type='checkbox' />
+          <AllCheckBox
+            type='checkbox'
+            onChange={allCheckedHandler}
+            checked={allChecked}
+          />
           <p>상품정보</p>
           <p>수량</p>
           <p>상품 금액</p>
         </ContentCont>
         {cartItems.map((item) => (
           <CartCard
-            key={item.id}
             item={item}
             removeCartItem={removeCartItemHandler}
+            checkedHandler={() => checkedHandler(item.cart_item_id)}
+            checked={checkedItems.includes(item.cart_item_id)}
           />
         ))}
+        <AllDeleteBtn>전체 삭제</AllDeleteBtn>
       </CartCont>
       <Footer />
     </>

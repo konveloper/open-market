@@ -33,7 +33,7 @@ export const ContentCont = styled.div`
   padding: 10px;
 `;
 
-export const TotalCheckBox = styled.input`
+export const AllCheckBox = styled.input`
   appearance: none;
   width: 15px;
   height: 15px;
@@ -45,4 +45,12 @@ export const TotalCheckBox = styled.input`
     background-color: var(--point);
     border-radius: 50px;
   }
+`;
+
+export const AllDeleteBtn = styled.button`
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  float: right;
 `;

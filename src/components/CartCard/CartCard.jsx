@@ -24,7 +24,7 @@ import {
   DeleteBtn,
 } from './CartCardStyle';
 
-function CartCard({ item }) {
+function CartCard({ item, checkedHandler, checked }) {
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(item.quantity);
   const removeCartItem = useCartStore((state) => state.removeCartItem);
@@ -91,7 +91,11 @@ function CartCard({ item }) {
 
   return (
     <CartCardCont>
-      <CheckBox type='checkbox' />
+      <CheckBox
+        type='checkbox'
+        onChange={() => checkedHandler(item.cart_item_id)}
+        checked={checked}
+      />
       <ProductInfoCont>
         {product && (
           <>
