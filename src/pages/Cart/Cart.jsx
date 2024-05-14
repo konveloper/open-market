@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import getCart from 'api/Cart/getCart';
+import allDeleteCart from 'api/Cart/allDeleteCart';
 import NavBar from 'components/Common/NavBar/NavBar';
 import CartCard from 'components/CartCard/CartCard';
 import Footer from 'components/Common/Footer/Footer';
@@ -61,6 +62,28 @@ function Cart() {
     removeCartItem(item.cart_item_id);
   };
 
+  async function removeAllCartHandler() {
+    try {
+      if (allChecked) {
+        await allDeleteCart();
+        setCartItems([]);
+        setCheckedItems([]);
+      } else {
+        alert('장바구니를 전체 선택해주세요.');
+      }
+    } catch (err) {
+      {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    }
+  }
+
   return (
     <>
       <NavBar />
@@ -85,7 +108,7 @@ function Cart() {
             checked={checkedItems.includes(item.cart_item_id)}
           />
         ))}
-        <AllDeleteBtn>전체 삭제</AllDeleteBtn>
+        <AllDeleteBtn onClick={removeAllCartHandler}>전체 삭제</AllDeleteBtn>
       </CartCont>
       <Footer />
     </>
