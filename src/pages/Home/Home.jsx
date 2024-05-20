@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import authStore from 'store/authStore';
 import getProducts from 'api/Product/getProducts';
 import NavBar from 'components/Common/NavBar/NavBar';
 import ProductCardLi from 'components/ProductCardLi/ProductCardLi';
@@ -6,7 +8,15 @@ import Footer from 'components/Common/Footer/Footer';
 import { H2IR, ProductCont } from './HomeStyle';
 
 function Home() {
+  const navigate = useNavigate();
+  const { isAuthenticated } = authStore();
   const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated]);
 
   const getProductList = async () => {
     try {
