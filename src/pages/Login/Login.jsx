@@ -74,6 +74,7 @@ function Login() {
       setSubmit(true);
       login(res.token);
       localStorage.setItem('token', res.token);
+      localStorage.setItem('isAuthenticated', true);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
