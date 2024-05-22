@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import getCart from 'api/Cart/getCart';
+import getProducts from 'api/Product/getProducts';
 import allDeleteCart from 'api/Cart/allDeleteCart';
 import NavBar from 'components/Common/NavBar/NavBar';
 import CartCard from 'components/CartCard/CartCard';
@@ -18,6 +19,7 @@ function Cart() {
   const cartItems = useCartStore((state) => state.cartItems);
   const setCartItems = useCartStore((state) => state.setCartItems);
   const removeCartItem = useCartStore((state) => state.removeCartItem);
+  const [product, setProduct] = useState(null);
   const [checkedItems, setCheckedItems] = useState([]);
   const [allChecked, setAllChecked] = useState(false);
 
@@ -38,6 +40,36 @@ function Cart() {
     }
     getCartItems();
   }, [setCartItems]);
+
+  useEffect(() => {
+    async function getProductId() {
+      try {
+        const res = await getProducts();
+        const products = res.results;
+        const details = {};
+        cartItems.forEach((item) => {
+          const matchedProduct = products.find(
+            (product) => product.product_id === item.product_id
+          );
+          if (matchedProduct) {
+            details[item.cart_item_id] = matchedProduct;
+          }
+        });
+        setProduct(details);
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    }
+    if (cartItems.length > 0) {
+      getProductId();
+    }
+  }, [cartItems]);
 
   const checkedHandler = (id) => {
     const isChecked = checkedItems.includes(id);
