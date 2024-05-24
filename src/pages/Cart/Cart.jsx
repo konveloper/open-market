@@ -13,15 +13,22 @@ import {
   ContentCont,
   AllCheckBox,
   AllDeleteBtn,
+  OrderCont,
+  TxtCont,
+  TitleTxt,
+  PriceTxt,
+  TotalPriceTxt,
+  SymbolTxt,
 } from './CartStyle';
 
 function Cart() {
   const cartItems = useCartStore((state) => state.cartItems);
   const setCartItems = useCartStore((state) => state.setCartItems);
   const removeCartItem = useCartStore((state) => state.removeCartItem);
-  const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [allChecked, setAllChecked] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     async function getCartItems() {
@@ -46,16 +53,17 @@ function Cart() {
       try {
         const res = await getProducts();
         const products = res.results;
-        const details = {};
+        const details = [];
         cartItems.forEach((item) => {
           const matchedProduct = products.find(
             (product) => product.product_id === item.product_id
           );
           if (matchedProduct) {
-            details[item.cart_item_id] = matchedProduct;
+            // details[item.cart_item_id] = matchedProduct;
+            details.push(matchedProduct);
           }
         });
-        setProduct(details);
+        setProducts(details);
       } catch (err) {
         if (err.response) {
           console.log(err.response.data);
@@ -70,6 +78,14 @@ function Cart() {
       getProductId();
     }
   }, [cartItems]);
+
+  useEffect(() => {
+    const priceSum =
+      cartItems.length > 0
+        ? products.reduce((acc, product) => acc + product.price, 0)
+        : 0;
+    setTotalPrice(priceSum);
+  }, [products, cartItems]);
 
   const checkedHandler = (id) => {
     const isChecked = checkedItems.includes(id);
@@ -141,6 +157,27 @@ function Cart() {
           />
         ))}
         <AllDeleteBtn onClick={removeAllCartHandler}>전체 삭제</AllDeleteBtn>
+        <OrderCont>
+          <TxtCont>
+            <TitleTxt>총 상품 금액</TitleTxt>
+            <PriceTxt>{totalPrice.toLocaleString()}원</PriceTxt>
+          </TxtCont>
+          <SymbolTxt>-</SymbolTxt>
+          <TxtCont>
+            <TitleTxt>상품 할인</TitleTxt>
+            <PriceTxt>0원</PriceTxt>
+          </TxtCont>
+          <SymbolTxt>+</SymbolTxt>
+          <TxtCont>
+            <TitleTxt>배송비</TitleTxt>
+            <PriceTxt>0원</PriceTxt>
+          </TxtCont>
+          <SymbolTxt>=</SymbolTxt>
+          <TxtCont>
+            <TitleTxt>결제 예정 금액</TitleTxt>
+            <TotalPriceTxt>{totalPrice.toLocaleString()}원</TotalPriceTxt>
+          </TxtCont>
+        </OrderCont>
       </CartCont>
       <Footer />
     </>
