@@ -59,7 +59,6 @@ function Cart() {
             (product) => product.product_id === item.product_id
           );
           if (matchedProduct) {
-            // details[item.cart_item_id] = matchedProduct;
             details.push(matchedProduct);
           }
         });
@@ -81,8 +80,17 @@ function Cart() {
 
   useEffect(() => {
     const priceSum =
-      cartItems.length > 0
-        ? products.reduce((acc, product) => acc + product.price, 0)
+      cartItems.length > 0 && products.length > 0
+        ? products.reduce((acc, product) => {
+            const matchedCartItem = cartItems.find(
+              (item) => item.product_id === product.product_id
+            );
+            if (matchedCartItem) {
+              return acc + product.price * matchedCartItem.quantity;
+            } else {
+              return acc;
+            }
+          }, 0)
         : 0;
     setTotalPrice(priceSum);
   }, [products, cartItems]);
@@ -114,8 +122,8 @@ function Cart() {
     try {
       if (allChecked) {
         await allDeleteCart();
-        setCartItems([]);
         setCheckedItems([]);
+        setCartItems([]);
       } else {
         alert('장바구니를 전체 선택해주세요.');
       }
@@ -150,6 +158,7 @@ function Cart() {
         </ContentCont>
         {cartItems.map((item) => (
           <CartCard
+            key={item.cart_item_id}
             item={item}
             removeCartItem={removeCartItemHandler}
             checkedHandler={() => checkedHandler(item.cart_item_id)}

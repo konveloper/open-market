@@ -28,6 +28,8 @@ function CartCard({ item, checkedHandler, checked }) {
   const [product, setProduct] = useState(null);
   const [qty, setQty] = useState(item.quantity);
   const removeCartItem = useCartStore((state) => state.removeCartItem);
+  const setCartItems = useCartStore((state) => state.setCartItems);
+  const cartItems = useCartStore((state) => state.cartItems);
 
   useEffect(() => {
     async function getProductId() {
@@ -51,13 +53,28 @@ function CartCard({ item, checkedHandler, checked }) {
     getProductId();
   }, [item.product_id]);
 
+  const qtyChangeHandler = (newQty) => {
+    const updatedItems = cartItems.map((cartItem) => {
+      if (cartItem.cart_item_id === item.cart_item_id) {
+        return { ...cartItem, quantity: newQty };
+      }
+      return cartItem;
+    });
+    setCartItems(updatedItems);
+    console.log(cartItems);
+  };
+
   const counterHandler = (num) => {
-    setQty((prev) => prev + num);
+    setQty((prev) => {
+      const newQty = prev + num;
+      return newQty;
+    });
   };
 
   async function cartChangeHandler() {
     try {
       const res = await putCart({ item, qty });
+      qtyChangeHandler(qty);
       console.log(res);
     } catch (err) {
       {
