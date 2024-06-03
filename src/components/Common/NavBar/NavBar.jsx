@@ -18,8 +18,12 @@ import {
 function NavBar({ productList, setFilteredProducts }) {
   const navigate = useNavigate();
   const [keywords, setKeywords] = useState('');
+  const [isFiltered, setIsFiltered] = useState(false);
 
   const homeHandler = () => {
+    if (isFiltered) {
+      setFilteredProducts(productList);
+    }
     navigate(`/home`);
   };
 
@@ -32,6 +36,7 @@ function NavBar({ productList, setFilteredProducts }) {
       product.product_name.toLowerCase().includes(keywords.toLocaleLowerCase())
     );
     setFilteredProducts(filteredProducts);
+    setIsFiltered(true);
   };
 
   return (
