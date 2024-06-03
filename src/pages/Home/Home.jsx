@@ -11,6 +11,7 @@ function Home() {
   const navigate = useNavigate();
   const { isAuthenticated } = authStore();
   const [productList, setProductList] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -23,7 +24,7 @@ function Home() {
       const res = await getProducts();
       const products = res.results;
       console.log(res.results);
-      setProductList((prevProducts) => [...prevProducts, ...products]);
+      setProductList(products);
     } catch (err) {
       if (err.response) {
         console.log(err.response.data);
@@ -41,11 +42,16 @@ function Home() {
 
   return (
     <>
-      <NavBar />
+      <NavBar
+        productList={productList}
+        setFilteredProducts={setFilteredProducts}
+      />
       <ProductCont>
         <H2IR>전체 제품 페이지</H2IR>
         <ProductCardLi
-          productList={productList}
+          productList={
+            filteredProducts.length > 0 ? filteredProducts : productList
+          }
           getProductList={getProductList}
         />
       </ProductCont>

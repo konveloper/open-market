@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IR } from 'styles/GlobalStyles';
+import iconSearch from 'assets/img/icon-search.svg';
 
 export const NavCont = styled.section`
   display: flex;
@@ -30,7 +31,7 @@ export const LogoImg = styled.img`
   margin: 12px;
 `;
 
-export const ShearchInput = styled.input`
+export const InputSearch = styled.input`
   width: 400px;
   height: 46px;
   padding: 13px 22px;
@@ -42,6 +43,16 @@ export const ShearchInput = styled.input`
   &::placeholder {
     color: var(--sub-grey);
   }
+`;
+
+export const BtnSearch = styled.button`
+  width: 30px;
+  height: 30px;
+  background-image: url(${iconSearch});
+  background-size: 100%;
+  position: absolute;
+  top: 28px;
+  right: 12px;
 `;
 
 export const DivRight = styled.div`

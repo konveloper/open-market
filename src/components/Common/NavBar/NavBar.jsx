@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logoImg from 'assets/img/logo.png';
 import iconCart from 'assets/img/icon-shopping-cart.png';
@@ -8,14 +8,16 @@ import {
   H2IR,
   DivLeft,
   LogoImg,
-  ShearchInput,
+  InputSearch,
+  BtnSearch,
   DivRight,
   BtnCart,
   BtnMyPage,
 } from './NavBarStyle';
 
-function NavBar() {
+function NavBar({ productList, setFilteredProducts }) {
   const navigate = useNavigate();
+  const [keywords, setKeywords] = useState('');
 
   const homeHandler = () => {
     navigate(`/home`);
@@ -25,12 +27,27 @@ function NavBar() {
     navigate(`/cart`);
   };
 
+  const searchHandler = () => {
+    const filteredProducts = productList.filter((product) =>
+      product.product_name.toLowerCase().includes(keywords.toLocaleLowerCase())
+    );
+    setFilteredProducts(filteredProducts);
+  };
+
   return (
     <NavCont>
       <H2IR>네비게이션 바</H2IR>
       <DivLeft>
         <LogoImg src={logoImg} alt='로고' onClick={() => homeHandler()} />
-        <ShearchInput placeholder='상품을 검색해보세요!' />
+        <label style={{ position: 'relative' }}>
+          <InputSearch
+            type='text'
+            placeholder='상품을 검색해보세요!'
+            value={keywords}
+            onChange={(e) => setKeywords(e.target.value)}
+          />
+          <BtnSearch type='button' onClick={searchHandler} />
+        </label>
       </DivLeft>
       <DivRight>
         <BtnCart>
