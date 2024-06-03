@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import authStore from 'store/authStore';
 import postLogin from 'api/Login/postLogin';
-import imgLogo from 'assets/img/logo.svg';
+import imgLogo from 'assets/img/logo.png';
 import Button from 'components/Common/Button/Button';
 import Input from 'components/Common/Input/Input';
 import {
@@ -114,7 +114,7 @@ function Login() {
     <ContSection>
       <H2IR>로그인 페이지</H2IR>
       <ImgLogo src={imgLogo} alt='로고 이미지' />
-      <TxtLogo>아무거나 마켓</TxtLogo>
+      <TxtLogo>바리바리</TxtLogo>
       <ContInputForm onSubmit={submitHandler}>
         <ContUsername>
           <Input

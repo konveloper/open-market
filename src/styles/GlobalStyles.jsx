@@ -8,9 +8,9 @@ ${reset};
     }
     :root {
       font-size: 62.5%;
-      --main: #6200EE;
-      --point: rgb(255, 127, 172);
-      --light: #BB86FC;
+      --main: #26A69A;
+      --point: #9ccc65;
+      --light: #D4E157;
       --main-grey: #767676;
       --sub-grey: #c4c4c4;
       --light-grey: #f2f2f2;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import logoImg from 'assets/img/logo.svg';
-import iconCart from 'assets/img/icon-shopping-cart.svg';
-import iconUser from 'assets/img/icon-user.svg';
+import logoImg from 'assets/img/logo.png';
+import iconCart from 'assets/img/icon-shopping-cart.png';
+import iconUser from 'assets/img/icon-user.png';
 import {
   NavCont,
   H2IR,

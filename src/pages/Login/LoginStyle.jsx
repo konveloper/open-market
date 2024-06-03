@@ -15,7 +15,7 @@ export const H2IR = styled.h2`
 export const ImgLogo = styled.img`
   width: 100px;
   height: 100px;
-  margin: 30px 0;
+  margin: 50px 0 20px 0;
 `;
 
 export const TxtLogo = styled.p`

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import logoImg from 'assets/img/logo.svg';
+import logoImg from 'assets/img/logo.png';
 import { SplashCont, LogoImg, LogoTxt } from './SplashStyle';
 
 function Splash() {
@@ -16,7 +16,7 @@ function Splash() {
       <>
         <SplashCont>
           <LogoImg src={logoImg} alt='로고 이미지' />
-          <LogoTxt>트레저 마켓</LogoTxt>
+          <LogoTxt>바리바리</LogoTxt>
         </SplashCont>
       </>
     );

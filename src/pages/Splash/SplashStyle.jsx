@@ -20,12 +20,7 @@ export const SplashCont = styled.div`
   ${Cont}
   text-align: center;
   color: var(--main-grey);
-  background: linear-gradient(
-    334deg,
-    rgb(141, 176, 250),
-    rgb(200, 161, 255),
-    rgb(255, 127, 172)
-  );
+  background: linear-gradient(334deg, #b2ebf2, #f0f4c3, #dcedc8);
   animation: 3s ${splashFade} ease-out;
 `;
 
@@ -39,5 +34,5 @@ export const LogoTxt = styled.p`
   margin-top: 50px;
   font-family: 'Gmarket Sans';
   font-size: 4rem;
-  color: #fff;
+  color: #9ccc65;
 `;
