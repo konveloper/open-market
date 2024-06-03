@@ -1,13 +1,7 @@
-import axios from 'axios';
+import { axiosPrivate } from '../api';
 
 const allDeleteCart = async () => {
-  const baseUrl = 'https://openmarket.weniv.co.kr';
-  const token = localStorage.getItem('token');
-  const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `JWT ${token}`,
-  };
-  const res = await axios.delete(`${baseUrl}/cart/`, { headers });
+  const res = await axiosPrivate.delete('/cart/');
   return res.data;
 };
 

@@ -21,12 +21,11 @@ export const axiosPrivate = axios.create({
 
 axiosPrivate.interceptors.request.use(
   (config) => {
-    const token = JSON.parse(localStorage.getItem('auth'));
-
+    const token = localStorage.getItem('token');
     if (!config.headers.Authorization) {
       config.headers = {
         ...config.headers,
-        Authorization: `Bearer ${token}`,
+        Authorization: `JWT ${token}`,
       };
     }
 
