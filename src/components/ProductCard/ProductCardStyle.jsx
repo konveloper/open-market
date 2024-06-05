@@ -2,14 +2,20 @@ import styled from 'styled-components';
 
 export const ProductLi = styled.li`
   width: 250px;
-  height: 300px;
+  height: 330px;
   display: flex;
   flex-direction: column;
 `;
 
-export const ProductImg = styled.img`
+export const ProductImgCont = styled.div`
   width: 250px;
   height: 250px;
+  overflow: hidden;
+`;
+
+export const ProductImg = styled.img`
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border: 1px solid var(--sub-grey);
   border-radius: 10px;
