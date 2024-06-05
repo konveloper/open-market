@@ -41,6 +41,12 @@ function NavBar({ productList, setFilteredProducts }) {
     setIsFiltered(true);
   };
 
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter') {
+      searchHandler();
+    }
+  };
+
   const modalOpenHandler = () => {
     setModalOpen((prev) => !prev);
   };
@@ -57,6 +63,7 @@ function NavBar({ productList, setFilteredProducts }) {
               placeholder='상품을 검색해보세요!'
               value={keywords}
               onChange={(e) => setKeywords(e.target.value)}
+              onKeyPress={keyPressHandler}
             />
             <BtnSearch type='button' onClick={searchHandler} />
           </label>
