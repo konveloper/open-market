@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import authStore from 'store/authStore';
-import postLogin from 'api/Login/postLogin';
+import postLogin from 'api/User/postLogin';
 import imgLogo from 'assets/img/logo.png';
 import Button from 'components/Common/Button/Button';
 import Input from 'components/Common/Input/Input';
