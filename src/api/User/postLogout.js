@@ -3,7 +3,6 @@ import { axiosPrivate } from 'api/api';
 const postLogin = async () => {
   try {
     const res = await axiosPrivate.post('/accounts/logout/');
-    console.log(res);
     return res.data;
   } catch (err) {
     if (err.response) {

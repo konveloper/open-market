@@ -28,7 +28,6 @@ import {
 function Product() {
   const location = useLocation();
   const product = location.state;
-  console.log(product);
   const productId = product.productId;
   const [qty, setQty] = useState(1);
   const [total, setTotal] = useState(product.price);
@@ -39,18 +38,7 @@ function Product() {
   };
 
   const addCartHandler = async () => {
-    try {
-      const res = await postCart(productId, qty);
-      console.log(res);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    await postCart(productId, qty);
   };
 
   return (

@@ -36,13 +36,7 @@ function Cart() {
         const res = await getCart();
         setCartItems(res.results);
       } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
+        console.error(err);
       }
     }
     getCartItems();
@@ -50,28 +44,18 @@ function Cart() {
 
   useEffect(() => {
     async function getProductId() {
-      try {
-        const res = await getProducts();
-        const products = res.results;
-        const details = [];
-        cartItems.forEach((item) => {
-          const matchedProduct = products.find(
-            (product) => product.product_id === item.product_id
-          );
-          if (matchedProduct) {
-            details.push(matchedProduct);
-          }
-        });
-        setProducts(details);
-      } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
+      const res = await getProducts();
+      const products = res.results;
+      const details = [];
+      cartItems.forEach((item) => {
+        const matchedProduct = products.find(
+          (product) => product.product_id === item.product_id
+        );
+        if (matchedProduct) {
+          details.push(matchedProduct);
         }
-      }
+      });
+      setProducts(details);
     }
     if (cartItems.length > 0) {
       getProductId();

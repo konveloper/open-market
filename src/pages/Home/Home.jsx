@@ -20,20 +20,9 @@ function Home() {
   }, [isAuthenticated]);
 
   const getProductList = async () => {
-    try {
-      const res = await getProducts();
-      const products = res.results;
-      console.log(res.results);
-      setProductList(products);
-    } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
+    const res = await getProducts();
+    const products = res.results;
+    setProductList(products);
   };
 
   useEffect(() => {

@@ -15,7 +15,7 @@ import {
 } from './LoginStyle';
 
 function Login() {
-  const { isAuthenticated, token, login, logout } = authStore();
+  const { login } = authStore();
   const [loginForm, setLoginForm] = useState({
     username: '',
     password: '',

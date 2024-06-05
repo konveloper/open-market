@@ -41,13 +41,7 @@ function CartCard({ item, checkedHandler, checked }) {
         );
         setProduct(matchedProduct);
       } catch (err) {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
+        console.error(err);
       }
     }
     getProductId();
@@ -61,7 +55,6 @@ function CartCard({ item, checkedHandler, checked }) {
       return cartItem;
     });
     setCartItems(updatedItems);
-    console.log(cartItems);
   };
 
   const counterHandler = (num) => {
@@ -72,38 +65,13 @@ function CartCard({ item, checkedHandler, checked }) {
   };
 
   async function cartChangeHandler() {
-    try {
-      const res = await putCart({ item, qty });
-      qtyChangeHandler(qty);
-      console.log(res);
-    } catch (err) {
-      {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
-    }
+    await putCart({ item, qty });
+    qtyChangeHandler(qty);
   }
 
   async function cartDeleteHandler() {
-    try {
-      await deleteCart({ item });
-      removeCartItem(item.cart_item_id);
-    } catch (err) {
-      {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
-    }
+    await deleteCart({ item });
+    removeCartItem(item.cart_item_id);
   }
 
   return (
