@@ -7,15 +7,18 @@ export const H2IR = styled.h2`
 
 export const ProductCont = styled.div`
   ${Cont}
-  width: 1024px;
-  margin: 150px auto 50px;
+  width: 100vw;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
+  margin-top: 30px;
 `;
 
 export const ProductImg = styled.img`
   width: 500px;
   height: 500px;
+  object-fit: cover;
 `;
 
 export const InfoCont = styled.div`

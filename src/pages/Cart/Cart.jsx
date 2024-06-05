@@ -31,6 +31,10 @@ function Cart() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
+  useEffect(() => {
     async function getCartItems() {
       try {
         const res = await getCart();

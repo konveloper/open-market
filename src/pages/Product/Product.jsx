@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import postCart from 'api/Cart/postCart';
 import NavBar from 'components/Common/NavBar/NavBar';
@@ -31,6 +31,10 @@ function Product() {
   const productId = product.productId;
   const [qty, setQty] = useState(1);
   const [total, setTotal] = useState(product.price);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   const counterHandler = (num) => {
     setQty((prev) => prev + num);
