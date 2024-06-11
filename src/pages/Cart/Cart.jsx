@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import getCart from 'api/Cart/getCart';
 import getProducts from 'api/Product/getProducts';
 import allDeleteCart from 'api/Cart/allDeleteCart';
@@ -12,16 +13,18 @@ import {
   CartCont,
   ContentCont,
   AllCheckBox,
-  AllDeleteBtn,
+  BtnAllDelete,
   OrderCont,
   TxtCont,
   TitleTxt,
   PriceTxt,
   TotalPriceTxt,
   SymbolTxt,
+  BtnOrder,
 } from './CartStyle';
 
 function Cart() {
+  const navigate = useNavigate();
   const cartItems = useCartStore((state) => state.cartItems);
   const setCartItems = useCartStore((state) => state.setCartItems);
   const removeCartItem = useCartStore((state) => state.removeCartItem);
@@ -107,26 +110,18 @@ function Cart() {
   };
 
   async function removeAllCartHandler() {
-    try {
-      if (allChecked) {
-        await allDeleteCart();
-        setCheckedItems([]);
-        setCartItems([]);
-      } else {
-        alert('장바구니를 전체 선택해주세요.');
-      }
-    } catch (err) {
-      {
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else {
-          console.log(`Error: ${err.message}`);
-        }
-      }
+    if (allChecked) {
+      await allDeleteCart();
+      setCheckedItems([]);
+      setCartItems([]);
+    } else {
+      alert('장바구니를 전체 선택해주세요.');
     }
   }
+
+  const orderHandler = () => {
+    navigate('/order');
+  };
 
   return (
     <>
@@ -153,7 +148,7 @@ function Cart() {
             checked={checkedItems.includes(item.cart_item_id)}
           />
         ))}
-        <AllDeleteBtn onClick={removeAllCartHandler}>전체 삭제</AllDeleteBtn>
+        <BtnAllDelete onClick={removeAllCartHandler}>전체 삭제</BtnAllDelete>
         <OrderCont>
           <TxtCont>
             <TitleTxt>총 상품 금액</TitleTxt>
@@ -175,6 +170,9 @@ function Cart() {
             <TotalPriceTxt>{totalPrice.toLocaleString()}원</TotalPriceTxt>
           </TxtCont>
         </OrderCont>
+        <BtnOrder type='button' onClick={orderHandler}>
+          주문하기
+        </BtnOrder>
       </CartCont>
       <Footer />
     </>

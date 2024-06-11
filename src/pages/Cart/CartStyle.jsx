@@ -16,7 +16,8 @@ export const CartCont = styled.div`
   width: 1024px;
   margin: 150px auto 50px;
   display: flex;
-  display: block;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
 `;
 
@@ -47,13 +48,13 @@ export const AllCheckBox = styled.input`
   }
 `;
 
-export const AllDeleteBtn = styled.button`
+export const BtnAllDelete = styled.button`
   width: 100px;
   height: 30px;
   border-radius: 5px;
   font-size: 1.2rem;
-  float: right;
   margin-bottom: 10px;
+  align-self: flex-end;
 `;
 
 export const OrderCont = styled.div`
@@ -94,4 +95,14 @@ export const SymbolTxt = styled.p`
   padding: 8px 10px;
   border-radius: 50%;
   color: var(--sub-grey);
+`;
+
+export const BtnOrder = styled.button`
+  width: 220px;
+  height: 68px;
+  margin-top: 30px;
+  font-size: 1.4rem;
+  border-radius: 5px;
+  color: white;
+  background-color: var(--main);
 `;
