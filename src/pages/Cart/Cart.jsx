@@ -120,7 +120,7 @@ function Cart() {
   }
 
   const orderHandler = () => {
-    navigate('/order');
+    navigate('/order', { state: checkedItems });
   };
 
   return (
