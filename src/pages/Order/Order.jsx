@@ -10,37 +10,41 @@ import { ContOrder, H2IR, ContOrderCard } from './OrderStyle';
 function Order() {
   const location = useLocation();
   const state = location.state;
-  const [products, setProducts] = useState([]);
+  const [orderItems, setOrderItems] = useState([]);
   const cartItems = useCartStore((state) => state.cartItems);
 
   useEffect(() => {
-    if (state.type === 'product') {
-      setProducts([state.product]);
-    } else if (state.type === 'cart') {
-      const cartItemIds = state.items;
-      const matchedCartItems = cartItemIds
-        .map((cartItemId) =>
-          cartItems.find((item) => item.cart_item_id === cartItemId)
-        )
-        .filter((item) => item !== undefined);
-      if (matchedCartItems.length > 0) {
-        async function fetchProducts() {
+    async function fetchOrderItems() {
+      if (state.type === 'product') {
+        setOrderItems([{ product: state.product, quantity: state.quantity }]);
+      } else if (state.type === 'cart') {
+        const cartItemIds = state.items;
+        const matchedCartItems = cartItemIds
+          .map((cartItemId) =>
+            cartItems.find((item) => item.cart_item_id === cartItemId)
+          )
+          .filter((item) => item !== undefined);
+
+        if (matchedCartItems.length > 0) {
           try {
             const res = await getProducts();
             const allProducts = res.results;
-            const matchedProducts = matchedCartItems.map((matchedCartItem) =>
-              allProducts.find(
-                (product) => product.product_id === matchedCartItem.product_id
-              )
+            const matchedOrderItems = matchedCartItems.map(
+              (matchedCartItem) => {
+                const product = allProducts.find(
+                  (product) => product.product_id === matchedCartItem.product_id
+                );
+                return { product, quantity: matchedCartItem.quantity };
+              }
             );
-            setProducts(matchedProducts);
+            setOrderItems(matchedOrderItems);
           } catch (err) {
             console.error(err);
           }
         }
-        fetchProducts();
       }
     }
+    fetchOrderItems();
   }, [cartItems, state]);
 
   return (
@@ -49,9 +53,13 @@ function Order() {
       <ContOrder>
         <H2IR>주문 페이지</H2IR>
         <ContOrderCard>
-          {products.length > 0 ? (
-            products.map((product, index) => (
-              <OrderCard key={index} product={product} />
+          {orderItems.length > 0 ? (
+            orderItems.map((orderItem, index) => (
+              <OrderCard
+                key={index}
+                product={orderItem.product}
+                quantity={orderItem.quantity}
+              />
             ))
           ) : (
             <p>상품 정보를 불러오는 중입니다...</p>

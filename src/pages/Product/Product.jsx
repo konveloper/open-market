@@ -49,7 +49,7 @@ function Product() {
   };
 
   const orderHandler = () => {
-    navigate('/order', { state: { type: 'product', product } });
+    navigate('/order', { state: { type: 'product', product, quantity: qty } });
   };
 
   return (

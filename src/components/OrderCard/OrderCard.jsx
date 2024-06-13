@@ -11,9 +11,7 @@ import {
   OrderPrice,
 } from './OrderCardStyle';
 
-function OrderCard({ product }) {
-  console.log(product);
-
+function OrderCard({ product, quantity }) {
   return (
     <ContOrderCard>
       <ContProductInfo>
@@ -24,14 +22,14 @@ function OrderCard({ product }) {
               <StoreName>{product.store_name}</StoreName>
               <ProductName>{product.product_name}</ProductName>
               <Price>{product && product.price.toLocaleString()}원</Price>
-              <DeliveryTxt>수량: {}개</DeliveryTxt>
+              <DeliveryTxt>수량: {quantity}개</DeliveryTxt>
             </div>
           </>
         )}
       </ContProductInfo>
       <OrderCont>
         <OrderPrice>
-          {product ? product.price.toLocaleString() : ''}원
+          {product && (product.price * quantity).toLocaleString()}원
         </OrderPrice>
       </OrderCont>
     </ContOrderCard>
