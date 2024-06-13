@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CartCardCont = styled.div`
+export const ContCartCard = styled.div`
   width: 100%;
   height: 150px;
   border: 1px solid var(--light-grey);
@@ -26,7 +26,7 @@ export const CheckBox = styled.input`
   }
 `;
 
-export const ProductInfoCont = styled.div`
+export const ContProduct = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
@@ -54,19 +54,19 @@ export const Price = styled.p`
   font-weight: 500;
 `;
 
-export const DeliveryTxt = styled.p`
+export const Delivery = styled.p`
   padding-top: 30px;
   color: var(--main-grey);
 `;
 
-export const QtyCont = styled.div`
+export const ContQty = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 `;
 
-export const CounterCont = styled.div`
+export const ContCounter = styled.div`
   display: flex;
 `;
 
@@ -88,7 +88,7 @@ export const BtnRight = styled.button`
   color: var(--sub-grey);
 `;
 
-export const ConfirmBtn = styled.button`
+export const BtnConfirm = styled.button`
   width: 100px;
   height: 30px;
   background-color: var(--point);
@@ -105,20 +105,20 @@ export const InputNum = styled.input`
   text-align: right;
 `;
 
-export const OrderCont = styled.div`
+export const ContOrder = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 `;
 
-export const OrderPrice = styled.p`
+export const TxtTotalPrice = styled.p`
   color: var(--point);
   font-size: 1.2rem;
   font-weight: 500;
 `;
 
-export const OrderBtn = styled.button`
+export const BtnOrder = styled.button`
   width: 100px;
   height: 30px;
   background-color: var(--point);
@@ -127,7 +127,7 @@ export const OrderBtn = styled.button`
   font-size: 1.2rem;
 `;
 
-export const DeleteBtn = styled.button`
+export const BtnDelete = styled.button`
   font-size: 2rem;
   color: var(--main-grey);
   align-self: flex-start;

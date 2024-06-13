@@ -5,7 +5,13 @@ import useCartStore from 'store/useCartStore';
 import NavBar from 'components/Common/NavBar/NavBar';
 import OrderCard from 'components/OrderCard/OrderCard';
 import Footer from 'components/Common/Footer/Footer';
-import { ContOrder, H2IR, ContOrderCard } from './OrderStyle';
+import {
+  ContOrder,
+  H2IR,
+  TxtPageTitle,
+  ContInfoTitle,
+  ContOrderCard,
+} from './OrderStyle';
 
 function Order() {
   const location = useLocation();
@@ -50,21 +56,30 @@ function Order() {
   return (
     <>
       <NavBar />
+      <H2IR>주문 페이지</H2IR>
       <ContOrder>
-        <H2IR>주문 페이지</H2IR>
-        <ContOrderCard>
-          {orderItems.length > 0 ? (
-            orderItems.map((orderItem, index) => (
-              <OrderCard
-                key={index}
-                product={orderItem.product}
-                quantity={orderItem.quantity}
-              />
-            ))
-          ) : (
-            <p>상품 정보를 불러오는 중입니다...</p>
-          )}
-        </ContOrderCard>
+        <TxtPageTitle>주문/결제하기</TxtPageTitle>
+        <div style={{ width: '70%' }}>
+          <ContInfoTitle>
+            <p>상품정보</p>
+            <p>할인</p>
+            <p>배송비</p>
+            <p>주문금액</p>
+          </ContInfoTitle>
+          <ContOrderCard>
+            {orderItems.length > 0 ? (
+              orderItems.map((orderItem, index) => (
+                <OrderCard
+                  key={index}
+                  product={orderItem.product}
+                  quantity={orderItem.quantity}
+                />
+              ))
+            ) : (
+              <p>상품 정보를 불러오는 중입니다...</p>
+            )}
+          </ContOrderCard>
+        </div>
       </ContOrder>
       <Footer />
     </>

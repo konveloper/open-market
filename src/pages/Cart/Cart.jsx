@@ -9,12 +9,13 @@ import Footer from 'components/Common/Footer/Footer';
 import useCartStore from 'store/useCartStore';
 import {
   H2IR,
-  Title,
-  CartCont,
-  ContentCont,
+  TxtPageTitle,
+  ContCart,
+  ContInfoTitle,
   AllCheckBox,
   BtnAllDelete,
-  OrderCont,
+  ContOrder,
+  ContCartItems,
   TxtCont,
   TitleTxt,
   PriceTxt,
@@ -127,29 +128,33 @@ function Cart() {
     <>
       <NavBar />
       <H2IR>장바구니 페이지</H2IR>
-      <CartCont>
-        <Title>장바구니</Title>
-        <ContentCont>
-          <AllCheckBox
-            type='checkbox'
-            onChange={allCheckedHandler}
-            checked={allChecked}
-          />
-          <p>상품정보</p>
-          <p>수량</p>
-          <p>상품 금액</p>
-        </ContentCont>
-        {cartItems.map((item) => (
-          <CartCard
-            key={item.cart_item_id}
-            item={item}
-            removeCartItem={removeCartItemHandler}
-            checkedHandler={() => checkedHandler(item.cart_item_id)}
-            checked={checkedItems.includes(item.cart_item_id)}
-          />
-        ))}
-        <BtnAllDelete onClick={removeAllCartHandler}>전체 삭제</BtnAllDelete>
-        <OrderCont>
+      <ContCart>
+        <TxtPageTitle>장바구니</TxtPageTitle>
+        <div style={{ width: '70%' }}>
+          <ContInfoTitle>
+            <AllCheckBox
+              type='checkbox'
+              onChange={allCheckedHandler}
+              checked={allChecked}
+            />
+            <p>상품정보</p>
+            <p>수량</p>
+            <p>상품 금액</p>
+          </ContInfoTitle>
+          <ContCartItems>
+            {cartItems.map((item) => (
+              <CartCard
+                key={item.cart_item_id}
+                item={item}
+                removeCartItem={removeCartItemHandler}
+                checkedHandler={() => checkedHandler(item.cart_item_id)}
+                checked={checkedItems.includes(item.cart_item_id)}
+              />
+            ))}
+          </ContCartItems>
+          <BtnAllDelete onClick={removeAllCartHandler}>전체 삭제</BtnAllDelete>
+        </div>
+        <ContOrder>
           <TxtCont>
             <TitleTxt>총 상품 금액</TitleTxt>
             <PriceTxt>{totalPrice.toLocaleString()}원</PriceTxt>
@@ -169,11 +174,11 @@ function Cart() {
             <TitleTxt>결제 예정 금액</TitleTxt>
             <TotalPriceTxt>{totalPrice.toLocaleString()}원</TotalPriceTxt>
           </TxtCont>
-        </OrderCont>
+        </ContOrder>
         <BtnOrder type='button' onClick={orderHandler}>
           주문하기
         </BtnOrder>
-      </CartCont>
+      </ContCart>
       <Footer />
     </>
   );

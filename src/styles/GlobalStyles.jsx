@@ -62,8 +62,9 @@ ${reset};
 `;
 
 export const Cont = css`
+  width: 100vw;
   min-height: 100vh;
-  margin: 0 auto;
+  padding-top: 90px;
   background-color: var(--white);
 `;
 

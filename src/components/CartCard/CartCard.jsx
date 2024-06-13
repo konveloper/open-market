@@ -4,24 +4,24 @@ import putCart from 'api/Cart/putCart';
 import deleteCart from 'api/Cart/deleteCart';
 import useCartStore from 'store/useCartStore';
 import {
-  CartCardCont,
+  ContCartCard,
   CheckBox,
   Img,
-  ProductInfoCont,
+  ContProduct,
   StoreName,
   ProductName,
   Price,
-  DeliveryTxt,
-  QtyCont,
-  CounterCont,
+  Delivery,
+  ContQty,
+  ContCounter,
   BtnLeft,
   InputNum,
   BtnRight,
-  ConfirmBtn,
-  OrderCont,
-  OrderPrice,
-  OrderBtn,
-  DeleteBtn,
+  BtnConfirm,
+  ContOrder,
+  TxtTotalPrice,
+  BtnOrder,
+  BtnDelete,
 } from './CartCardStyle';
 
 function CartCard({ item, checkedHandler, checked }) {
@@ -75,13 +75,13 @@ function CartCard({ item, checkedHandler, checked }) {
   }
 
   return (
-    <CartCardCont>
+    <ContCartCard>
       <CheckBox
         type='checkbox'
         onChange={() => checkedHandler(item.cart_item_id)}
         checked={checked}
       />
-      <ProductInfoCont>
+      <ContProduct>
         {product && (
           <>
             <Img src={product.image} />
@@ -89,29 +89,29 @@ function CartCard({ item, checkedHandler, checked }) {
               <StoreName>{product.store_name}</StoreName>
               <ProductName>{product.product_name}</ProductName>
               <Price>{product && product.price.toLocaleString()}원</Price>
-              <DeliveryTxt>택배 배송 / 무료 배송</DeliveryTxt>
+              <Delivery>택배 배송 / 무료 배송</Delivery>
             </div>
           </>
         )}
-      </ProductInfoCont>
-      <QtyCont>
-        <CounterCont>
+      </ContProduct>
+      <ContQty>
+        <ContCounter>
           <BtnLeft onClick={() => counterHandler(-1)} disabled={qty === 1}>
             -
           </BtnLeft>
           <InputNum type='number' value={qty} min={1} readOnly />
           <BtnRight onClick={() => counterHandler(+1)}>+</BtnRight>
-        </CounterCont>
-        <ConfirmBtn onClick={() => cartChangeHandler(item)}>수정</ConfirmBtn>
-      </QtyCont>
-      <OrderCont>
-        <OrderPrice>
+        </ContCounter>
+        <BtnConfirm onClick={() => cartChangeHandler(item)}>수정</BtnConfirm>
+      </ContQty>
+      <ContOrder>
+        <TxtTotalPrice>
           {product ? (product.price * qty).toLocaleString() : ''}원
-        </OrderPrice>
-        <OrderBtn>주문하기</OrderBtn>
-      </OrderCont>
-      <DeleteBtn onClick={() => cartDeleteHandler()}>x</DeleteBtn>
-    </CartCardCont>
+        </TxtTotalPrice>
+        <BtnOrder>주문하기</BtnOrder>
+      </ContOrder>
+      <BtnDelete onClick={() => cartDeleteHandler()}>x</BtnDelete>
+    </ContCartCard>
   );
 }
 
