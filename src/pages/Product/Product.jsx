@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import postCart from 'api/Cart/postCart';
 import NavBar from 'components/Common/NavBar/NavBar';
 import Counter from 'components/Counter/Counter';
@@ -26,11 +26,14 @@ import {
 } from './ProductStyle';
 
 function Product() {
+  const navigate = useNavigate();
   const location = useLocation();
   const product = location.state;
   const productId = product.productId;
   const [qty, setQty] = useState(1);
   const [total, setTotal] = useState(product.price);
+
+  console.log(product);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,6 +46,10 @@ function Product() {
 
   const addCartHandler = async () => {
     await postCart(productId, qty);
+  };
+
+  const orderHandler = () => {
+    navigate('/order', { state: { type: 'product', product } });
   };
 
   return (
@@ -74,8 +81,12 @@ function Product() {
               </QtyCont>
             </TotalCont>
             <div>
-              <BuyBtn>바로 구매</BuyBtn>
-              <CartBtn onClick={addCartHandler}>장바구니</CartBtn>
+              <BuyBtn type='button' onClick={orderHandler}>
+                바로 구매
+              </BuyBtn>
+              <CartBtn type='button' onClick={addCartHandler}>
+                장바구니
+              </CartBtn>
             </div>
           </InfoBottomCont>
         </InfoCont>

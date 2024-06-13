@@ -9,21 +9,20 @@ import { ContOrder, H2IR, ContOrderCard } from './OrderStyle';
 
 function Order() {
   const location = useLocation();
+  const state = location.state;
   const [products, setProducts] = useState([]);
-  const cartItemIds = location.state;
   const cartItems = useCartStore((state) => state.cartItems);
 
-  console.log('cartItems:', cartItems);
-  console.log('cartItemIds:', cartItemIds);
-
   useEffect(() => {
-    if (cartItems.length > 0) {
+    if (state.type === 'product') {
+      setProducts([state.product]);
+    } else if (state.type === 'cart') {
+      const cartItemIds = state.items;
       const matchedCartItems = cartItemIds
         .map((cartItemId) =>
           cartItems.find((item) => item.cart_item_id === cartItemId)
         )
         .filter((item) => item !== undefined);
-      console.log('matchedCartItems:', matchedCartItems);
       if (matchedCartItems.length > 0) {
         async function fetchProducts() {
           try {
@@ -34,7 +33,6 @@ function Order() {
                 (product) => product.product_id === matchedCartItem.product_id
               )
             );
-            console.log(matchedProducts);
             setProducts(matchedProducts);
           } catch (err) {
             console.error(err);
@@ -43,7 +41,7 @@ function Order() {
         fetchProducts();
       }
     }
-  }, [cartItems, cartItemIds]);
+  }, [cartItems, state]);
 
   return (
     <>
