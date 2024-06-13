@@ -10,10 +10,13 @@ export const ContOrder = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  p {
+    font-size: 1.4rem;
+  }
 `;
 
 export const TxtPageTitle = styled.p`
-  font-size: 2rem;
+  font-size: 2rem !important;
   font-weight: 500;
   padding: 50px;
 `;
@@ -32,4 +35,17 @@ export const ContInfoTitle = styled.div`
 
 export const ContOrderCard = styled.div`
   width: 100%;
+`;
+
+export const ContTotalPrice = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+export const TxtTotalPrice = styled.p`
+  font-size: 2rem !important;
+  color: var(--main);
 `;

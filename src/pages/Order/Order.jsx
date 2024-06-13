@@ -11,6 +11,8 @@ import {
   TxtPageTitle,
   ContInfoTitle,
   ContOrderCard,
+  ContTotalPrice,
+  TxtTotalPrice,
 } from './OrderStyle';
 
 function Order() {
@@ -18,6 +20,7 @@ function Order() {
   const state = location.state;
   const [orderItems, setOrderItems] = useState([]);
   const cartItems = useCartStore((state) => state.cartItems);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     async function fetchOrderItems() {
@@ -53,6 +56,13 @@ function Order() {
     fetchOrderItems();
   }, [cartItems, state]);
 
+  useEffect(() => {
+    const total = orderItems.reduce((acc, item) => {
+      return acc + item.product.price * item.quantity;
+    }, 0);
+    setTotalPrice(total);
+  }, [orderItems]);
+
   return (
     <>
       <NavBar />
@@ -79,6 +89,10 @@ function Order() {
               <p>상품 정보를 불러오는 중입니다...</p>
             )}
           </ContOrderCard>
+          <ContTotalPrice>
+            <p>총 주문 금액</p>
+            <TxtTotalPrice>{totalPrice.toLocaleString()}원</TxtTotalPrice>
+          </ContTotalPrice>
         </div>
       </ContOrder>
       <Footer />
