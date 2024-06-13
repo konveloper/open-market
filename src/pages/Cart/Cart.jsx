@@ -16,11 +16,11 @@ import {
   BtnAllDelete,
   ContOrder,
   ContCartItems,
-  TxtCont,
-  TitleTxt,
-  PriceTxt,
-  TotalPriceTxt,
-  SymbolTxt,
+  ContTxt,
+  TxtTitle,
+  TxtPrice,
+  TxtTotalPrice,
+  TxtSymbol,
   BtnOrder,
 } from './CartStyle';
 
@@ -155,25 +155,25 @@ function Cart() {
           <BtnAllDelete onClick={removeAllCartHandler}>전체 삭제</BtnAllDelete>
         </div>
         <ContOrder>
-          <TxtCont>
-            <TitleTxt>총 상품 금액</TitleTxt>
-            <PriceTxt>{totalPrice.toLocaleString()}원</PriceTxt>
-          </TxtCont>
-          <SymbolTxt>-</SymbolTxt>
-          <TxtCont>
-            <TitleTxt>상품 할인</TitleTxt>
-            <PriceTxt>0원</PriceTxt>
-          </TxtCont>
-          <SymbolTxt>+</SymbolTxt>
-          <TxtCont>
-            <TitleTxt>배송비</TitleTxt>
-            <PriceTxt>0원</PriceTxt>
-          </TxtCont>
-          <SymbolTxt>=</SymbolTxt>
-          <TxtCont>
-            <TitleTxt>결제 예정 금액</TitleTxt>
-            <TotalPriceTxt>{totalPrice.toLocaleString()}원</TotalPriceTxt>
-          </TxtCont>
+          <ContTxt>
+            <TxtTitle>총 상품 금액</TxtTitle>
+            <TxtPrice>{totalPrice.toLocaleString()}원</TxtPrice>
+          </ContTxt>
+          <TxtSymbol>-</TxtSymbol>
+          <ContTxt>
+            <TxtTitle>상품 할인</TxtTitle>
+            <TxtPrice>0원</TxtPrice>
+          </ContTxt>
+          <TxtSymbol>+</TxtSymbol>
+          <ContTxt>
+            <TxtTitle>배송비</TxtTitle>
+            <TxtPrice>0원</TxtPrice>
+          </ContTxt>
+          <TxtSymbol>=</TxtSymbol>
+          <ContTxt>
+            <TxtTitle>결제 예정 금액</TxtTitle>
+            <TxtTotalPrice>{totalPrice.toLocaleString()}원</TxtTotalPrice>
+          </ContTxt>
         </ContOrder>
         <BtnOrder type='button' onClick={orderHandler}>
           주문하기

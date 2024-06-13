@@ -10,10 +10,13 @@ export const ContCart = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  p {
+    font-size: 1.4rem;
+  }
 `;
 
 export const TxtPageTitle = styled.p`
-  font-size: 2rem;
+  font-size: 2rem !important;
   font-weight: 500;
   padding: 50px;
 `;
@@ -66,30 +69,29 @@ export const ContCartItems = styled.div`
   width: 100%;
 `;
 
-export const TxtCont = styled.div`
+export const ContTxt = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const TitleTxt = styled.p`
+export const TxtTitle = styled.p`
   font-size: 1.2rem;
   padding-bottom: 10px;
 `;
 
-export const PriceTxt = styled.p`
-  font-size: 1.4rem;
+export const TxtPrice = styled.p`
+  font-size: 1.8rem !important;
   font-weight: 500;
 `;
 
-export const TotalPriceTxt = styled.p`
-  font-size: 1.6rem;
+export const TxtTotalPrice = styled.p`
+  font-size: 2rem !important;
   font-weight: 500;
   color: var(--main);
 `;
 
-export const SymbolTxt = styled.p`
-  font-size: 1.8rem;
+export const TxtSymbol = styled.p`
   background-color: white;
   padding: 8px 10px;
   border-radius: 50%;
@@ -100,7 +102,7 @@ export const BtnOrder = styled.button`
   width: 220px;
   height: 68px;
   margin-top: 30px;
-  font-size: 1.4rem;
+  font-size: 1.8rem !important;
   border-radius: 5px;
   color: white;
   background-color: var(--main);
