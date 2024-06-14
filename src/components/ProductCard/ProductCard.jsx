@@ -17,8 +17,8 @@ function ProductCard({ product, getProductList }) {
       state: {
         productId: product.product_id,
         image: product.image,
-        storeName: product.store_name,
-        productName: product.product_name,
+        store_name: product.store_name,
+        product_name: product.product_name,
         price: product.price,
         stock: product.stock,
       },

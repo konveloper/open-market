@@ -62,8 +62,8 @@ function Product() {
         </div>
         <InfoCont>
           <div>
-            <StoreName>{product.storeName}</StoreName>
-            <ProductName>{product.productName}</ProductName>
+            <StoreName>{product.store_name}</StoreName>
+            <ProductName>{product.product_name}</ProductName>
             <Price>{product.price.toLocaleString()}원</Price>
           </div>
           <InfoBottomCont>
