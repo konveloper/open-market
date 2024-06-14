@@ -122,7 +122,11 @@ function Cart() {
   }
 
   const orderHandler = () => {
-    navigate('/order', { state: { type: 'cart', items: checkedItems } });
+    if (checkedItems.length === 0) {
+      alert('주문하실 상품을 선택해주세요.');
+    } else {
+      navigate('/order', { state: { type: 'cart', items: checkedItems } });
+    }
   };
 
   return (
