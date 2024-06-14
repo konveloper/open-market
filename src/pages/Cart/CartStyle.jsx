@@ -107,3 +107,12 @@ export const BtnOrder = styled.button`
   color: white;
   background-color: var(--main);
 `;
+
+// 아이템이 없는 경우
+export const ContNoItems = styled.div`
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

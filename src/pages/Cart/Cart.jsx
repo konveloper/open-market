@@ -22,6 +22,7 @@ import {
   TxtTotalPrice,
   TxtSymbol,
   BtnOrder,
+  ContNoItems,
 } from './CartStyle';
 
 function Cart() {
@@ -141,43 +142,62 @@ function Cart() {
             <p>수량</p>
             <p>상품 금액</p>
           </ContInfoTitle>
-          <ContCartItems>
-            {cartItems.map((item) => (
-              <CartCard
-                key={item.cart_item_id}
-                item={item}
-                removeCartItem={removeCartItemHandler}
-                checkedHandler={() => checkedHandler(item.cart_item_id)}
-                checked={checkedItems.includes(item.cart_item_id)}
-              />
-            ))}
-          </ContCartItems>
-          <BtnAllDelete onClick={removeAllCartHandler}>전체 삭제</BtnAllDelete>
+          {cartItems.length > 0 ? (
+            <>
+              <ContCartItems>
+                {cartItems.map((item) => (
+                  <CartCard
+                    key={item.cart_item_id}
+                    item={item}
+                    removeCartItem={removeCartItemHandler}
+                    checkedHandler={() => checkedHandler(item.cart_item_id)}
+                    checked={checkedItems.includes(item.cart_item_id)}
+                  />
+                ))}
+              </ContCartItems>
+              <BtnAllDelete onClick={removeAllCartHandler}>
+                전체 삭제
+              </BtnAllDelete>
+            </>
+          ) : (
+            <ContNoItems>
+              <p style={{ fontSize: '1.8rem', fontWeight: '500' }}>
+                장바구니에 담긴 상품이 없습니다.
+              </p>
+              <p style={{ color: 'var(--main-grey)', paddingTop: '10px' }}>
+                원하는 상품을 장바구니에 담아보세요!
+              </p>
+            </ContNoItems>
+          )}
         </div>
-        <ContOrder>
-          <ContTxt>
-            <TxtTitle>총 상품 금액</TxtTitle>
-            <TxtPrice>{totalPrice.toLocaleString()}원</TxtPrice>
-          </ContTxt>
-          <TxtSymbol>-</TxtSymbol>
-          <ContTxt>
-            <TxtTitle>상품 할인</TxtTitle>
-            <TxtPrice>0원</TxtPrice>
-          </ContTxt>
-          <TxtSymbol>+</TxtSymbol>
-          <ContTxt>
-            <TxtTitle>배송비</TxtTitle>
-            <TxtPrice>0원</TxtPrice>
-          </ContTxt>
-          <TxtSymbol>=</TxtSymbol>
-          <ContTxt>
-            <TxtTitle>결제 예정 금액</TxtTitle>
-            <TxtTotalPrice>{totalPrice.toLocaleString()}원</TxtTotalPrice>
-          </ContTxt>
-        </ContOrder>
-        <BtnOrder type='button' onClick={orderHandler}>
-          주문하기
-        </BtnOrder>
+        {cartItems.length > 0 ? (
+          <>
+            <ContOrder>
+              <ContTxt>
+                <TxtTitle>총 상품 금액</TxtTitle>
+                <TxtPrice>{totalPrice.toLocaleString()}원</TxtPrice>
+              </ContTxt>
+              <TxtSymbol>-</TxtSymbol>
+              <ContTxt>
+                <TxtTitle>상품 할인</TxtTitle>
+                <TxtPrice>0원</TxtPrice>
+              </ContTxt>
+              <TxtSymbol>+</TxtSymbol>
+              <ContTxt>
+                <TxtTitle>배송비</TxtTitle>
+                <TxtPrice>0원</TxtPrice>
+              </ContTxt>
+              <TxtSymbol>=</TxtSymbol>
+              <ContTxt>
+                <TxtTitle>결제 예정 금액</TxtTitle>
+                <TxtTotalPrice>{totalPrice.toLocaleString()}원</TxtTotalPrice>
+              </ContTxt>
+            </ContOrder>{' '}
+            <BtnOrder type='button' onClick={orderHandler}>
+              주문하기
+            </BtnOrder>
+          </>
+        ) : null}
       </ContCart>
       <Footer />
     </>
