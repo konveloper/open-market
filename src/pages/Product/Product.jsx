@@ -33,8 +33,6 @@ function Product() {
   const [qty, setQty] = useState(1);
   const [total, setTotal] = useState(product.price);
 
-  console.log(product);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   });

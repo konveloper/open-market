@@ -4,7 +4,6 @@ import { Cont, IR } from 'styles/GlobalStyles';
 export const SignupSection = styled.section`
   ${Cont}
   text-align: center;
-  color: var(--main-grey);
   margin-bottom: 100px;
 `;
 
@@ -15,7 +14,7 @@ export const H2IR = styled.h2`
 export const ImgLogo = styled.img`
   width: 100px;
   height: 100px;
-  margin: 20px 0;
+  margin-bottom: 20px;
 `;
 
 export const TxtLogo = styled.p`
