@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import postLogout from 'api/User/postLogout';
 import authStore from 'store/authStore';
-import { ContModal, BtnLogout } from './ModalStyle';
+import { ContModal } from './ModalStyle';
 
 function ModalLogout() {
   const navigate = useNavigate();
@@ -19,7 +19,8 @@ function ModalLogout() {
 
   return (
     <ContModal>
-      <BtnLogout onClick={logoutHandler}>로그아웃</BtnLogout>
+      <button>마이 페이지</button>
+      <button onClick={logoutHandler}>로그아웃</button>
     </ContModal>
   );
 }
