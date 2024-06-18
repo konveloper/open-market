@@ -6,7 +6,7 @@ export const ContModal = styled.div`
   border-radius: 10px;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
   background-color: white;
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
