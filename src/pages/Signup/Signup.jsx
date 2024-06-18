@@ -172,7 +172,7 @@ function Signup() {
 
   const signupHandler = async (userData) => {
     try {
-      const res = await postSignup(userData);
+      await postSignup(userData);
       setSubmit(true);
     } catch (err) {
       if (err.response) {
