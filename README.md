@@ -77,6 +77,58 @@
 <p align="right"><a href="#top">(🔼 Top)</a></p>
 
 ## 5. 폴더 구조
-
+```
+📦src
+ ┣ 📂api
+ ┃ ┣ 📂Cart
+ ┃ ┃ ┣ 📜allDeleteCart.js
+ ┃ ┃ ┣ 📜deleteCart.js
+ ┃ ┃ ┣ 📜getCart.js
+ ┃ ┃ ┣ 📜postCart.js
+ ┃ ┃ ┗ 📜putCart.js
+ ┃ ┣ 📂Product
+ ┃ ┃ ┗ 📜getProducts.js
+ ┃ ┣ 📂Signup
+ ┃ ┃ ┣ 📜postSignup.js
+ ┃ ┃ ┗ 📜postUsernameIsValid.js
+ ┃ ┣ 📂User
+ ┃ ┃ ┣ 📜postLogin.js
+ ┃ ┃ ┗ 📜postLogout.js
+ ┃ ┗ 📜api.js
+ ┣ 📂assets
+ ┃ ┣ 📂fonts
+ ┃ ┗ 📂img
+ ┣ 📂components
+ ┃ ┣ 📂CartCard
+ ┃ ┣ 📂Common
+ ┃ ┃ ┣ 📂Button
+ ┃ ┃ ┣ 📂Footer
+ ┃ ┃ ┣ 📂Input
+ ┃ ┃ ┗ 📂NavBar
+ ┃ ┣ 📂Counter
+ ┃ ┣ 📂Modal
+ ┃ ┣ 📂OrderCard
+ ┃ ┣ 📂ProductCard
+ ┃ ┗ 📂ProductCardLi
+ ┣ 📂pages
+ ┃ ┣ 📂Cart
+ ┃ ┣ 📂Home
+ ┃ ┣ 📂Login
+ ┃ ┣ 📂NotFound
+ ┃ ┣ 📂Order
+ ┃ ┣ 📂Product
+ ┃ ┣ 📂Signup
+ ┃ ┣ 📂Splash
+ ┃ ┗ 📜Root.jsx
+ ┣ 📂store
+ ┃ ┣ 📜authStore.js
+ ┃ ┗ 📜useCartStore.js
+ ┣ 📂styles
+ ┃ ┣ 📜GlobalStyles.jsx
+ ┃ ┗ 📜font.css
+ ┣ 📜App.js
+ ┗ 📜index.js
+```
+ 
 <p align="right"><a href="#top">(🔼 Top)</a></p>
 
